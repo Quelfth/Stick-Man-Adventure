@@ -24,7 +24,7 @@ public class DamageIndicator {
 			if (damage > 0)
 				g.drawString("-" + damage, x, y);
 			if (damage < 0)
-				g.drawString("+" + -damage, x, y);
+				g.drawString("+" + -damage, x, y); 
 
 			if (damage == 0)
 				g.drawString("0", x, y);
