@@ -42,7 +42,8 @@ public class StickManAdventure {
 		Zone zoneH = new Zone(0, 1050, 500, 1000, 1, 0);
 		Zone zoneI = new Zone(500, 1050, 1000, 1010, -1, 1);
 		Zone zoneJ = new Zone(1000, 1050, 1500, 1000, 1, 0);
-		Zone zoneK = new Zone(650, 1050, 850, 1300, -1, 1);
+		Zone zoneK = new Zone(550, 1050, 950, 600, -1, 1);
+		Zone zoneL = new Zone(550, 1050, 950, 250, -1, 1);
 		Zone door1 = new Zone(1000, 500, 1200, 100, 3, 0);
 		Zone door2 = new Zone(1300, 1000, 1500, 600, 3, 0);
 		Zone door10 = new Zone(200, 1050, 400, 650, 3, -1);
@@ -83,6 +84,15 @@ public class StickManAdventure {
 					zoneH.paint(g);
 					zoneI.paint(g);
 					zoneJ.paint(g);
+					zoneK.paint(g);
+					break;
+				case 3:
+					door2.paint(g);
+					p1.paint(g);
+					zoneH.paint(g);
+					zoneI.paint(g);
+					zoneJ.paint(g);
+					zoneL.paint(g);
 					break;
 				default:
 					door10.paint(g);
@@ -189,6 +199,14 @@ public class StickManAdventure {
 				zoneH.update();
 				zoneI.update();
 				zoneJ.update();
+				zoneK.update();
+				door2.update();
+				break;
+			case 3:
+				zoneH.update();
+				zoneI.update();
+				zoneJ.update();
+				zoneL.update();
 				door2.update();
 				break;
 			default:
@@ -201,7 +219,7 @@ public class StickManAdventure {
 				lastWCheck = false;
 			p1.update();
 			panel.repaint();
-			System.out.println(lastWCheck);
+			System.out.println(stage);
 			try {
 				Thread.sleep(1000 / 60);
 			} catch (InterruptedException e) {

@@ -204,6 +204,7 @@ public class Zone {
 			break;
 		case 1:
 			mapCollision();
+			mapDamage(9999);
 			break;
 		case 2:
 			switch (metaType) {

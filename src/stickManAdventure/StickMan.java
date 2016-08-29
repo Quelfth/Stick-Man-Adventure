@@ -83,7 +83,7 @@ public class StickMan implements KeyListener {
 	int jumpForce = 0;
 	int wallJumpForce = 0;
 	int frameOfAnimation = 0;
-	String skinPath = "C:/Users/Neutron/FilesKT/eclipse/Stick Man Adventure/src/stickManAdventure/skin/";
+	String skinPath = "/Users/league/Desktop/Stick-Man-Adventure/src/stickManAdventure/skin/";
 	int doubleJumps = 0;
 	boolean onFloor = false;
 	boolean onLeft = false;
@@ -166,6 +166,11 @@ public class StickMan implements KeyListener {
 		case 2:
 			spawnX = 96;
 			spawnY = 999;
+			break;
+		case 3:
+			spawnX = 96;
+			spawnY = 999;
+			break;
 		default:
 			spawnX = x;
 			spawnY = y;
