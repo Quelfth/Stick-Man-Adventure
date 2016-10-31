@@ -7,6 +7,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.TreeSet;
 
 import javax.imageio.ImageIO;
@@ -28,6 +29,7 @@ public class StickMan implements KeyListener {
 	boolean dir = true;
 	BufferedImage idleLeft;
 	BufferedImage idleRight;
+	BufferedImage[] goLeft = new BufferedImage[10];
 	BufferedImage goLeft0;
 	BufferedImage goLeft1;
 	BufferedImage goLeft2;
@@ -38,6 +40,7 @@ public class StickMan implements KeyListener {
 	BufferedImage goLeft7;
 	BufferedImage goLeft8;
 	BufferedImage goLeft9;
+	BufferedImage[] goRight = new BufferedImage[10];
 	BufferedImage goRight0;
 	BufferedImage goRight1;
 	BufferedImage goRight2;
@@ -109,39 +112,24 @@ public class StickMan implements KeyListener {
 		maxHp = 60;
 		hp = maxHp;
 		frame = _frame;
+
 		try {
-			idleLeft = ImageIO.read(new File(skinPath + "idleLeft.png"));
-			idleRight = ImageIO.read(new File(skinPath + "idleRight.png"));
-			goLeft0 = ImageIO.read(new File(skinPath + "goLeft00.png"));
-			goLeft1 = ImageIO.read(new File(skinPath + "goLeft01.png"));
-			goLeft2 = ImageIO.read(new File(skinPath + "goLeft02.png"));
-			goLeft3 = ImageIO.read(new File(skinPath + "goLeft03.png"));
-			goLeft4 = ImageIO.read(new File(skinPath + "goLeft04.png"));
-			goLeft5 = ImageIO.read(new File(skinPath + "goLeft05.png"));
-			goLeft6 = ImageIO.read(new File(skinPath + "goLeft06.png"));
-			goLeft7 = ImageIO.read(new File(skinPath + "goLeft07.png"));
-			goLeft8 = ImageIO.read(new File(skinPath + "goLeft08.png"));
-			goLeft9 = ImageIO.read(new File(skinPath + "goLeft09.png"));
-			goRight0 = ImageIO.read(new File(skinPath + "goRight00.png"));
-			goRight1 = ImageIO.read(new File(skinPath + "goRight01.png"));
-			goRight2 = ImageIO.read(new File(skinPath + "goRight02.png"));
-			goRight3 = ImageIO.read(new File(skinPath + "goRight03.png"));
-			goRight4 = ImageIO.read(new File(skinPath + "goRight04.png"));
-			goRight5 = ImageIO.read(new File(skinPath + "goRight05.png"));
-			goRight6 = ImageIO.read(new File(skinPath + "goRight06.png"));
-			goRight7 = ImageIO.read(new File(skinPath + "goRight07.png"));
-			goRight8 = ImageIO.read(new File(skinPath + "goRight08.png"));
-			goRight9 = ImageIO.read(new File(skinPath + "goRight09.png"));
-			jumpingLeft = ImageIO.read(new File(skinPath + "jumpingLeft.png"));
-			jumpingRight = ImageIO.read(new File(skinPath + "jumpingRight.png"));
-			climbingLeftLookingLeft = ImageIO.read(new File(skinPath + "climbingLeftLookingLeft.png"));
-			climbingRightLookingLeft = ImageIO.read(new File(skinPath + "climbingRightLookingLeft.png"));
-			climbingLeftLookingRight = ImageIO.read(new File(skinPath + "climbingLeftLookingRight.png"));
-			climbingRightLookingRight = ImageIO.read(new File(skinPath + "climbingRightLookingRight.png"));
-			fallingLeft = ImageIO.read(new File(skinPath + "fallingLeft.png"));
-			fallingRight = ImageIO.read(new File(skinPath + "fallingRight.png"));
-			deadLeft = ImageIO.read(new File(skinPath + "deadLeft.png"));
-			deadRight = ImageIO.read(new File(skinPath + "deadRight.png"));
+			idleLeft = loadImgRes("idleLeft.png");
+			idleRight = loadImgRes("idleRight.png");
+			for (int i = 0; i < 9; i++)
+				goLeft[i] = loadImgRes("goLeft0" + i + ".png");
+			for (int i = 0; i < 9; i++)
+				goRight[i] = loadImgRes("goRight0" + i + ".png");
+			jumpingLeft = loadImgRes("jumpingLeft.png");
+			jumpingRight = loadImgRes("jumpingRight.png");
+			climbingLeftLookingLeft = loadImgRes("climbingLeftLookingLeft.png");
+			climbingRightLookingLeft = loadImgRes("climbingRightLookingLeft.png");
+			climbingLeftLookingRight = loadImgRes("climbingLeftLookingRight.png");
+			climbingRightLookingRight = loadImgRes("climbingRightLookingRight.png");
+			fallingLeft = loadImgRes("fallingLeft.png");
+			fallingRight = loadImgRes("fallingRight.png");
+			deadLeft = loadImgRes("deadLeft.png");
+			deadRight = loadImgRes("deadRight.png");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -151,6 +139,10 @@ public class StickMan implements KeyListener {
 		ground = frameHeight;
 		rightSide = frameWidth;
 		frame.addKeyListener(this);
+	}
+
+	private BufferedImage loadImgRes(String imgName) throws IOException {
+		return ImageIO.read(StickMan.class.getResourceAsStream("/" + imgName));
 	}
 
 	public void respawn(int stage) {
@@ -537,55 +529,11 @@ public class StickMan implements KeyListener {
 	}
 
 	public BufferedImage skinGoLeft(int frame) {
-		switch (frame) {
-		case 0:
-			return goLeft0;
-		case 1:
-			return goLeft1;
-		case 2:
-			return goLeft2;
-		case 3:
-			return goLeft3;
-		case 4:
-			return goLeft4;
-		case 5:
-			return goLeft5;
-		case 6:
-			return goLeft6;
-		case 7:
-			return goLeft7;
-		case 8:
-			return goLeft8;
-		case 9:
-			return goLeft9;
-		}
-		return null;
+		return goLeft[frame];
 	}
 
 	public BufferedImage skinGoRight(int frame) {
-		switch (frame) {
-		case 0:
-			return goRight0;
-		case 1:
-			return goRight1;
-		case 2:
-			return goRight2;
-		case 3:
-			return goRight3;
-		case 4:
-			return goRight4;
-		case 5:
-			return goRight5;
-		case 6:
-			return goRight6;
-		case 7:
-			return goRight7;
-		case 8:
-			return goRight8;
-		case 9:
-			return goRight9;
-		}
-		return null;
+		return goRight[frame];
 	}
 
 	public int frameClock() {
