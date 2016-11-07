@@ -152,13 +152,16 @@ public class Zone {
 			case 0:
 				switch (metaId) {
 				case -1:
-					if (detFullIntersect() && s.vkw && !StickManAdventure.lastWCheck) {
+					if (s.hp > 0 && (detFullIntersect() && s.vkw && !StickManAdventure.lastWCheck)) {
 						StickManAdventure.stage--;
 						s.respawn();
 					}
 					break;
 				case 0:
-					if ((StickManAdventure.stage > 0 && (detFullIntersect() && s.vkw && StickManAdventure.lastWCheck)) || (StickManAdventure.stage <= 0 && (s.onFloor || (detFullIntersect() && s.onWall)))) {
+					// if you can go through the door && pressing w
+					if (s.hp > 0 && ((StickManAdventure.stage > 0 && (detFullIntersect() && s.vkw && StickManAdventure.lastWCheck))
+							|| (StickManAdventure.stage <= 0 && (s.onFloor || (detFullIntersect() && s.onWall))))) {
+						// go through the door
 						StickManAdventure.stage++;
 						s.respawn();
 					}
@@ -325,7 +328,6 @@ public class Zone {
 		g.fillRect(x1 + (width / 7), y2 + (height * 6 / 11), width * 2 / 7, height * 4 / 11);
 		g.fillRect(x1 + (width * 4 / 7), y2 + (height * 6 / 11), width * 2 / 7, height * 4 / 11);
 		g.setColor(knob);
-		g.fillOval(x1 + (width * 49 / 56), y2 + (height * 6 / 11) + ((height / 2) / 56), width * 6 / 56,
-				width * 6 / 56);
+		g.fillOval(x1 + (width * 49 / 56), y2 + (height * 6 / 11) + ((height / 2) / 56), width * 6 / 56, width * 6 / 56);
 	}
 }

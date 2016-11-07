@@ -5,9 +5,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.TreeSet;
 
 import javax.imageio.ImageIO;
@@ -464,27 +462,28 @@ public class StickMan implements KeyListener {
 
 	// Jumping
 	public void jump() {
-		if (velY < 0 && (onFloor || onWall)) {
-			velY = 0;
+		if (hp > 0) {
+			if (velY < 0 && (onFloor || onWall)) {
+				velY = 0;
+			}
+			if (jumps < 1 + doubleJumps) {
+				if (!onWall || onFloor) {
+					velY += jumpForce;
+					jumps++;
+				}
+			} else {
+				if (onLeft && dir) {
+					velY += (int) (jumpForce / 1.5);
+					extraVel += wallJumpForce;
+					jumps = 1;
+				}
+				if (onRight && !dir) {
+					velY += (int) (jumpForce / 1.5);
+					extraVel -= wallJumpForce;
+					jumps = 1;
+				}
+			}
 		}
-		if (jumps < 1 + doubleJumps) {
-			if (!onWall || onFloor) {
-				velY += jumpForce;
-				jumps++;
-			}
-		} else {
-			if (onLeft && dir) {
-				velY += (int) (jumpForce / 1.5);
-				extraVel += wallJumpForce;
-				jumps = 1;
-			}
-			if (onRight && !dir) {
-				velY += (int) (jumpForce / 1.5);
-				extraVel -= wallJumpForce;
-				jumps = 1;
-			}
-		}
-
 	}
 
 	// Walking
