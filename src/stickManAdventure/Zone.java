@@ -101,6 +101,22 @@ public class Zone {
 		mapHorizontalCollision(s);
 	}
 
+	private void mapUpwardMotionCancel() {
+		if (s.y2 < y1 && detHIntersect() && s.velY > 0 && !(s.y2 < y2)) {
+			s.velY = 0;
+		}
+	}
+
+	private void mapDownwardMotionCancel() {
+		if (s.y > y2 && detHIntersect() && s.velY < 1 && !(s.y > y1)) {
+			s.velY = 1;
+		}
+	}
+	
+	private void mapVerticalMotionCancel() {
+		mapUpwardMotionCancel();
+		mapDownwardMotionCancel();
+	}
 	public boolean detVIntersect() {
 		for (int i = s.y2; i < s.y; i++) {
 			if (i < y1 && i > y2) {
@@ -207,7 +223,7 @@ public class Zone {
 			break;
 		case 1:
 			mapCollision();
-			mapDamage(9999);
+			mapVerticalMotionCancel();
 			break;
 		case 2:
 			switch (metaType) {

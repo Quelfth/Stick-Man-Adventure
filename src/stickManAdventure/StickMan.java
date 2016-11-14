@@ -161,6 +161,9 @@ public class StickMan implements KeyListener {
 			spawnX = 96;
 			spawnY = 999;
 			break;
+		case 4:
+			spawnX = 10;
+			spawnY = 300;
 		default:
 			spawnX = x;
 			spawnY = y;
@@ -286,6 +289,8 @@ public class StickMan implements KeyListener {
 		g.drawLine(leftSide, 0, leftSide, frameHeight);
 		g.setColor(new Color(255, 255, 0));
 		g.drawLine(rightSide - 1, 0, rightSide - 1, frameHeight);
+		g.setColor(new Color(0, 127, 255));
+		g.drawRect(x, y2, 72, 192);
 	}
 
 	// Collision

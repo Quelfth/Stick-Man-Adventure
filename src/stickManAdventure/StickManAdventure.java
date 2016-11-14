@@ -44,9 +44,40 @@ public class StickManAdventure {
 		Zone zoneJ = new Zone(1000, 1050, 1500, 1000, 1, 0);
 		Zone zoneK = new Zone(550, 1050, 950, 600, -1, 1);
 		Zone zoneL = new Zone(550, 1050, 950, 250, -1, 1);
+		
 		Zone door1 = new Zone(1000, 500, 1200, 100, 3, 0);
 		Zone door2 = new Zone(1300, 1000, 1500, 600, 3, 0);
 		Zone door10 = new Zone(200, 1050, 400, 650, 3, -1);
+		Level start = new Level(p1);
+		start.add(door1);
+		start.add(zoneA);
+		start.add(zoneB);
+		start.add(zoneC);
+		start.add(zoneD);
+		start.add(zoneE);
+		start.add(zoneF);
+		start.add(zoneG);
+		Level lava0 = new Level(p1);
+		lava0.add(door2);
+		lava0.add(zoneH);
+		lava0.add(zoneI);
+		lava0.add(zoneJ);
+		Level lava1 = new Level(p1);
+		lava1.add(door2);
+		lava1.add(zoneH);
+		lava1.add(zoneI);
+		lava1.add(zoneJ);
+		lava1.add(zoneK);
+		Level lava2 = new Level(p1);
+		lava2.add(door2);
+		lava2.add(zoneH);
+		lava2.add(zoneI);
+		lava2.add(zoneJ);
+		lava2.add(zoneL);
+		Level cliff0 = new Level(p1);
+		cliff0.add(new Zone(0, 1050, 300, 300, 1, 0));
+		Level last = new Level(p1);
+		last.add(door10);
 		JPanel panel = new JPanel() {
 			/**
 			 * 
@@ -61,42 +92,22 @@ public class StickManAdventure {
 				g.fillRect(0, 0, frameWidth, frameHeight);
 				switch (stage) {
 				case 0:
-					door1.paint(g);
-					p1.paint(g);
-					zoneA.paint(g);
-					zoneB.paint(g);
-					zoneC.paint(g);
-					zoneD.paint(g);
-					zoneE.paint(g);
-					zoneF.paint(g);
-					zoneG.paint(g);
+					start.paint(g);
 					break;
 				case 1:
-					door2.paint(g);
-					p1.paint(g);
-					zoneH.paint(g);
-					zoneI.paint(g);
-					zoneJ.paint(g);
+					lava0.paint(g);
 					break;
 				case 2:
-					door2.paint(g);
-					p1.paint(g);
-					zoneH.paint(g);
-					zoneI.paint(g);
-					zoneJ.paint(g);
-					zoneK.paint(g);
+					lava1.paint(g);
 					break;
 				case 3:
-					door2.paint(g);
-					p1.paint(g);
-					zoneH.paint(g);
-					zoneI.paint(g);
-					zoneJ.paint(g);
-					zoneL.paint(g);
+					lava2.paint(g);
+					break;
+				case 4:
+					cliff0.paint(g);
 					break;
 				default:
-					door10.paint(g);
-					p1.paint(g);
+					last.paint(g);
 					break;
 				}
 				g.setColor(Color.RED);
@@ -180,37 +191,22 @@ public class StickManAdventure {
 			p1.setFloat(p1.vkshift && !p1.vkspace);
 			switch (stage) {
 			case 0:
-				zoneA.update();
-				zoneB.update();
-				zoneC.update();
-				zoneD.update();
-				zoneE.update();
-				zoneF.update();
-				zoneG.update();
-				door1.update();
+				start.update();
 				break;
 			case 1:
-				zoneH.update();
-				zoneI.update();
-				zoneJ.update();
-				door2.update();
+				lava0.update();
 				break;
 			case 2:
-				zoneH.update();
-				zoneI.update();
-				zoneJ.update();
-				zoneK.update();
-				door2.update();
+				lava1.update();
 				break;
 			case 3:
-				zoneH.update();
-				zoneI.update();
-				zoneJ.update();
-				zoneL.update();
-				door2.update();
+				lava2.update();
+				break;
+			case 4:
+				cliff0.update();
 				break;
 			default:
-				door10.update();
+				last.update();
 				break;
 			}
 			if (p1.vkw)
