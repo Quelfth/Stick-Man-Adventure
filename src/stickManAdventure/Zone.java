@@ -10,6 +10,7 @@ public class Zone {
 	int y2 = 0;
 	int type = 0;
 	int metaType = 0;
+	int adData = 0;
 	static StickMan s = null;
 	int height = 0;
 	int width = 0;
@@ -17,8 +18,11 @@ public class Zone {
 	int gx2 = 0;
 	int gy1 = 0;
 	int gy2 = 0;
+	private int func0;
 	DamageIndicator indicator = new DamageIndicator(0, 0, 0, null);
-
+	public void setAdData(int adData){
+		this.adData = adData;
+	}
 	public Zone(int _x1, int _y1, int _x2, int _y2, int _type, int _metaType) {
 		x1 = _x1;
 		y1 = _y1;
@@ -162,7 +166,10 @@ public class Zone {
 		mapFunction(id, 0);
 	}
 
-	private void mapFunction(int id, int metaId) {
+	private void mapFunction(int id, int metaId){
+		mapFunction(id, metaId, 0);
+	}
+	private void mapFunction(int id, int metaId, int adData) {
 		if (detIntersect()) {
 			switch (id) {
 			case 0:
@@ -182,6 +189,12 @@ public class Zone {
 						s.respawn();
 					}
 					break;
+				case 2:
+					if(s.hp > 0 && detFullIntersect())
+						func0 = 1;
+					if(func0 == 1 && s.vkw && StickManAdventure.lastWCheck){
+						StickManAdventure.stage = adData;
+					}
 				}
 				break;
 			}
@@ -249,7 +262,7 @@ public class Zone {
 			}
 			break;
 		case 3:
-			mapFunction(0, metaType);
+			mapFunction(0, metaType, adData);
 			break;
 		}
 	}
@@ -329,6 +342,10 @@ public class Zone {
 				break;
 			case 0:
 				drawDoor(g, new Color(172, 115, 57), new Color(96, 64, 32), new Color(63, 63, 63));
+				break;
+			case 2:
+				if(func0 == 1)
+					drawDoor(g, new Color(255, 192, 0), new Color(192, 144, 0), new Color(255, 255, 0));
 				break;
 			}
 			break;

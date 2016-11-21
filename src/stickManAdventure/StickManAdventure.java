@@ -44,9 +44,10 @@ public class StickManAdventure {
 		Zone zoneJ = new Zone(1000, 1050, 1500, 1000, 1, 0);
 		Zone zoneK = new Zone(550, 1050, 950, 600, -1, 1);
 		Zone zoneL = new Zone(550, 1050, 950, 250, -1, 1);
-		
 		Zone door1 = new Zone(1000, 500, 1200, 100, 3, 0);
 		Zone door2 = new Zone(1300, 1000, 1500, 600, 3, 0);
+		Zone doorS0 = new Zone(1300, 1050, 1500, 650, 3, 2);
+		doorS0.setAdData(-8);
 		Zone door10 = new Zone(200, 1050, 400, 650, 3, -1);
 		Level start = new Level(p1);
 		start.add(door1);
@@ -76,6 +77,13 @@ public class StickManAdventure {
 		lava2.add(zoneL);
 		Level cliff0 = new Level(p1);
 		cliff0.add(new Zone(0, 1050, 300, 300, 1, 0));
+		cliff0.add(new Zone(600, 650, 640, 0, 1, 0));
+		cliff0.add(new Zone(900, 1050, 980, 400, 1, 0));
+		cliff0.add(new Zone(898, 1050, 900, 398, 1, 0));
+		cliff0.add(new Zone(980, 500, 1500, 460, 1, 0));
+		cliff0.add(doorS0);
+		Level tyq = new Level(p1);
+		tyq.add(new Zone(1300, 1050, 1500, 650, 3, 2));
 		Level last = new Level(p1);
 		last.add(door10);
 		JPanel panel = new JPanel() {
@@ -91,6 +99,9 @@ public class StickManAdventure {
 				g.setColor(Color.white);
 				g.fillRect(0, 0, frameWidth, frameHeight);
 				switch (stage) {
+				case -8:
+					tyq.paint(g);
+					break;
 				case 0:
 					start.paint(g);
 					break;
@@ -190,6 +201,9 @@ public class StickManAdventure {
 			}
 			p1.setFloat(p1.vkshift && !p1.vkspace);
 			switch (stage) {
+			case -8:
+				tyq.update();
+				break;
 			case 0:
 				start.update();
 				break;

@@ -143,6 +143,7 @@ public class StickMan implements KeyListener {
 		return ImageIO.read(StickMan.class.getResourceAsStream("/" + imgName));
 	}
 
+	// Respawn
 	public void respawn(int stage) {
 		switch (stage) {
 		case 0:
@@ -164,6 +165,7 @@ public class StickMan implements KeyListener {
 		case 4:
 			spawnX = 10;
 			spawnY = 300;
+			break;
 		default:
 			spawnX = x;
 			spawnY = y;
@@ -471,8 +473,8 @@ public class StickMan implements KeyListener {
 			if (velY < 0 && (onFloor || onWall)) {
 				velY = 0;
 			}
-			if (jumps < 1 + doubleJumps) {
-				if (!onWall || onFloor) {
+			if (!onWall || onFloor) {
+				if (jumps < 1 + doubleJumps) {
 					velY += jumpForce;
 					jumps++;
 				}
