@@ -20,9 +20,11 @@ public class Zone {
 	int gy2 = 0;
 	private int func0;
 	DamageIndicator indicator = new DamageIndicator(0, 0, 0, null);
-	public void setAdData(int adData){
+
+	public void setAdData(int adData) {
 		this.adData = adData;
 	}
+
 	public Zone(int _x1, int _y1, int _x2, int _y2, int _type, int _metaType) {
 		x1 = _x1;
 		y1 = _y1;
@@ -116,11 +118,12 @@ public class Zone {
 			s.velY = 1;
 		}
 	}
-	
+
 	private void mapVerticalMotionCancel() {
 		mapUpwardMotionCancel();
 		mapDownwardMotionCancel();
 	}
+
 	public boolean detVIntersect() {
 		for (int i = s.y2; i < s.y; i++) {
 			if (i < y1 && i > y2) {
@@ -166,9 +169,10 @@ public class Zone {
 		mapFunction(id, 0);
 	}
 
-	private void mapFunction(int id, int metaId){
+	private void mapFunction(int id, int metaId) {
 		mapFunction(id, metaId, 0);
 	}
+
 	private void mapFunction(int id, int metaId, int adData) {
 		if (detIntersect()) {
 			switch (id) {
@@ -182,7 +186,8 @@ public class Zone {
 					break;
 				case 0:
 					// if you can go through the door && pressing w
-					if (s.hp > 0 && ((StickManAdventure.stage > 0 && (detFullIntersect() && s.vkw && StickManAdventure.lastWCheck))
+					if (s.hp > 0 && ((StickManAdventure.stage > 0
+							&& (detFullIntersect() && s.vkw && StickManAdventure.lastWCheck))
 							|| (StickManAdventure.stage <= 0 && (s.onFloor || (detFullIntersect() && s.onWall))))) {
 						// go through the door
 						StickManAdventure.stage++;
@@ -190,9 +195,9 @@ public class Zone {
 					}
 					break;
 				case 2:
-					if(s.hp > 0 && detFullIntersect())
+					if (s.hp > 0 && detFullIntersect())
 						func0 = 1;
-					if(func0 == 1 && s.vkw && StickManAdventure.lastWCheck){
+					if (func0 == 1 && s.vkw && StickManAdventure.lastWCheck) {
 						StickManAdventure.stage = adData;
 					}
 				}
@@ -268,7 +273,7 @@ public class Zone {
 	}
 
 	private void fillZone(Graphics g) {
-		g.fillRect(x1, y2, x2 - x1, y1 - y2);
+		g.fillRect(x1 + StickManAdventure.xo, y2 + StickManAdventure.yo, x2 - x1, y1 - y2);
 	}
 
 	public void paint(Graphics g) {
@@ -290,47 +295,47 @@ public class Zone {
 			switch (metaType) {
 			case 0:
 				g.setColor(new Color(204, 153, 102));
-				g.drawLine(x1, y2, x2, y2);
-				TriX[0] = x1;
-				TriX[1] = x1;
-				TriX[2] = x1 + width / 8;
-				TriY[0] = y2;
-				TriY[1] = y2 + height / 4;
-				TriY[2] = y2;
+				g.drawLine(x1 + StickManAdventure.xo, y2 + StickManAdventure.yo, x2 + StickManAdventure.xo, y2 + StickManAdventure.yo);
+				TriX[0] = x1 + StickManAdventure.xo;
+				TriX[1] = x1 + StickManAdventure.xo;
+				TriX[2] = x1 + StickManAdventure.xo + width / 8;
+				TriY[0] = y2 + StickManAdventure.yo;
+				TriY[1] = y2 + StickManAdventure.yo + height / 4;
+				TriY[2] = y2 + StickManAdventure.yo;
 				g.drawPolygon(TriX, TriY, 3);
-				TriX[0] = x2;
-				TriX[1] = x2;
-				TriX[2] = x2 - width / 8;
+				TriX[0] = x2 + StickManAdventure.xo;
+				TriX[1] = x2 + StickManAdventure.xo;
+				TriX[2] = x2 + StickManAdventure.xo - width / 8;
 				g.drawPolygon(TriX, TriY, 3);
 				break;
 			case 1:
 				g.setColor(new Color(204, 153, 102));
-				g.drawLine(x1, y1, x1, y2);
-				TriX[0] = x1;
-				TriX[1] = x1 + width / 4;
-				TriX[2] = x1;
-				TriY[0] = y1;
-				TriY[1] = y1;
-				TriY[2] = y1 - width / 8;
+				g.drawLine(x1 + StickManAdventure.xo, y1 + StickManAdventure.yo, x1 + StickManAdventure.xo, y2 + StickManAdventure.yo);
+				TriX[0] = x1 + StickManAdventure.xo;
+				TriX[1] = x1 + StickManAdventure.xo + width / 4;
+				TriX[2] = x1 + StickManAdventure.xo;
+				TriY[0] = y1 + StickManAdventure.yo;
+				TriY[1] = y1 + StickManAdventure.yo;
+				TriY[2] = y1 + StickManAdventure.yo - width / 8;
 				g.drawPolygon(TriX, TriY, 3);
-				TriY[0] = y2;
-				TriY[1] = y2;
-				TriY[2] = y2 + width / 8;
+				TriY[0] = y2 + StickManAdventure.yo;
+				TriY[1] = y2 + StickManAdventure.yo;
+				TriY[2] = y2 + StickManAdventure.yo + width / 8;
 				g.drawPolygon(TriX, TriY, 3);
 				break;
 			case 2:
 				g.setColor(new Color(204, 153, 102));
-				g.drawLine(x1, y1, x2, y1);
-				TriX[0] = x1;
-				TriX[1] = x1;
-				TriX[2] = x1 + width / 8;
-				TriY[0] = y2;
-				TriY[1] = y2 + height / 4;
-				TriY[2] = y2;
+				g.drawLine(x1 + StickManAdventure.xo, y1 + StickManAdventure.yo, x2 + StickManAdventure.xo, y1 + StickManAdventure.yo);
+				TriX[0] = x1 + StickManAdventure.xo;
+				TriX[1] = x1 + StickManAdventure.xo;
+				TriX[2] = x1 + StickManAdventure.xo + width / 8;
+				TriY[0] = y2 + StickManAdventure.yo;
+				TriY[1] = y2 + StickManAdventure.yo + height / 4;
+				TriY[2] = y2 + StickManAdventure.yo;
 				g.drawPolygon(TriX, TriY, 3);
-				TriX[0] = x2;
-				TriX[1] = x2;
-				TriX[2] = x2 - width / 8;
+				TriX[0] = x2 + StickManAdventure.xo;
+				TriX[1] = x2 + StickManAdventure.xo;
+				TriX[2] = x2 + StickManAdventure.xo - width / 8;
 				g.drawPolygon(TriX, TriY, 3);
 				break;
 			}
@@ -344,7 +349,7 @@ public class Zone {
 				drawDoor(g, new Color(172, 115, 57), new Color(96, 64, 32), new Color(63, 63, 63));
 				break;
 			case 2:
-				if(func0 == 1)
+				if (func0 == 1)
 					drawDoor(g, new Color(255, 192, 0), new Color(192, 144, 0), new Color(255, 255, 0));
 				break;
 			}
@@ -356,11 +361,12 @@ public class Zone {
 		g.setColor(main);
 		fillZone(g);
 		g.setColor(indents);
-		g.fillRect(x1 + (width / 7), y2 + (height / 11), width * 2 / 7, height * 4 / 11);
-		g.fillRect(x1 + (width * 4 / 7), y2 + (height / 11), width * 2 / 7, height * 4 / 11);
-		g.fillRect(x1 + (width / 7), y2 + (height * 6 / 11), width * 2 / 7, height * 4 / 11);
-		g.fillRect(x1 + (width * 4 / 7), y2 + (height * 6 / 11), width * 2 / 7, height * 4 / 11);
+		g.fillRect(x1 + StickManAdventure.xo + (width / 7), y2 + StickManAdventure.yo + (height / 11), width * 2 / 7, height * 4 / 11);
+		g.fillRect(x1 + StickManAdventure.xo + (width * 4 / 7), y2 + StickManAdventure.yo + (height / 11), width * 2 / 7, height * 4 / 11);
+		g.fillRect(x1 + StickManAdventure.xo + (width / 7), y2 + StickManAdventure.yo + (height * 6 / 11), width * 2 / 7, height * 4 / 11);
+		g.fillRect(x1 + StickManAdventure.xo + (width * 4 / 7), y2 + StickManAdventure.yo + (height * 6 / 11), width * 2 / 7, height * 4 / 11);
 		g.setColor(knob);
-		g.fillOval(x1 + (width * 49 / 56), y2 + (height * 6 / 11) + ((height / 2) / 56), width * 6 / 56, width * 6 / 56);
+		g.fillOval(x1 + StickManAdventure.xo + (width * 49 / 56), y2 + StickManAdventure.yo + (height * 6 / 11) + ((height / 2) / 56), width * 6 / 56,
+				width * 6 / 56);
 	}
 }

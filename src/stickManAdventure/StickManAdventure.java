@@ -11,10 +11,25 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class StickManAdventure {
-	static int xOffset = 0;
-	static int yOffset = 0;
+	static int xo = 0;
+	static int yo = 0;
 	static int stage = 0;
+	static Level[] levels = new Level[256];
 	static boolean lastWCheck = false;
+	static int levelWidth = 0;
+	static int levelHeight = 0;
+	static int frameWidth = 0;
+	static int frameHeight = 0;
+
+	public static Level getLevel() {
+		// if there isn't a level in the current stage value
+		if (levels[stage + 127] == null) {
+			// return the last level, which is the default
+			return levels[255];
+		}
+		// else, return the level in the current stage value
+		return levels[stage + 127];
+	}
 
 	public static void main(String[] args) {
 		final JFrame frame = new JFrame("Stick Man Adventure");
@@ -28,10 +43,10 @@ public class StickManAdventure {
 		if (FrameHeight.equals("")) {
 			FrameHeight = "1050";
 		}
-		int frameWidth = Integer.parseInt(FrameWidth);
-		int frameHeight = Integer.parseInt(FrameHeight);
+		frameWidth = Integer.parseInt(FrameWidth);
+		frameHeight = Integer.parseInt(FrameHeight);
 		frame.setSize(frameWidth, frameHeight);
-		StickMan p1 = new StickMan(96, 0, frame);
+		StickMan s = new StickMan(96, 0, frame);
 		Zone zoneA = new Zone(200, 800, 400, 200, 1, 0);
 		Zone zoneB = new Zone(1000, 700, 1200, 500, 2, 0);
 		Zone zoneC = new Zone(0, 300, 200, 200, 2, 0);
@@ -49,7 +64,7 @@ public class StickManAdventure {
 		Zone doorS0 = new Zone(1300, 1050, 1500, 650, 3, 2);
 		doorS0.setAdData(-8);
 		Zone door10 = new Zone(200, 1050, 400, 650, 3, -1);
-		Level start = new Level(p1);
+		Level start = new Level(s, 1500, 1300);
 		start.add(door1);
 		start.add(zoneA);
 		start.add(zoneB);
@@ -58,34 +73,40 @@ public class StickManAdventure {
 		start.add(zoneE);
 		start.add(zoneF);
 		start.add(zoneG);
-		Level lava0 = new Level(p1);
+		Level lava0 = new Level(s, 1500, 1050);
 		lava0.add(door2);
 		lava0.add(zoneH);
 		lava0.add(zoneI);
 		lava0.add(zoneJ);
-		Level lava1 = new Level(p1);
+		Level lava1 = new Level(s, 1500, 1050);
 		lava1.add(door2);
 		lava1.add(zoneH);
 		lava1.add(zoneI);
 		lava1.add(zoneJ);
 		lava1.add(zoneK);
-		Level lava2 = new Level(p1);
+		Level lava2 = new Level(s, 1500, 1050);
 		lava2.add(door2);
 		lava2.add(zoneH);
 		lava2.add(zoneI);
 		lava2.add(zoneJ);
 		lava2.add(zoneL);
-		Level cliff0 = new Level(p1);
+		Level cliff0 = new Level(s, 1500, 1050);
 		cliff0.add(new Zone(0, 1050, 300, 300, 1, 0));
 		cliff0.add(new Zone(600, 650, 640, 0, 1, 0));
 		cliff0.add(new Zone(900, 1050, 980, 400, 1, 0));
 		cliff0.add(new Zone(898, 1050, 900, 398, 1, 0));
 		cliff0.add(new Zone(980, 500, 1500, 460, 1, 0));
 		cliff0.add(doorS0);
-		Level tyq = new Level(p1);
+		Level tyq = new Level(s, 1500, 1050);
 		tyq.add(new Zone(1300, 1050, 1500, 650, 3, 2));
-		Level last = new Level(p1);
+		Level last = new Level(s, 65536, 65536);
 		last.add(door10);
+		levels[-8 + 127] = tyq;
+		levels[0 + 127] = start;
+		levels[1 + 127] = lava0;
+		levels[2 + 127] = lava1;
+		levels[3 + 127] = lava2;
+		levels[4 + 127] = cliff0;
 		JPanel panel = new JPanel() {
 			/**
 			 * 
@@ -98,36 +119,14 @@ public class StickManAdventure {
 				g.setFont(new Font("TimesRoman", Font.PLAIN, 36));
 				g.setColor(Color.white);
 				g.fillRect(0, 0, frameWidth, frameHeight);
-				switch (stage) {
-				case -8:
-					tyq.paint(g);
-					break;
-				case 0:
-					start.paint(g);
-					break;
-				case 1:
-					lava0.paint(g);
-					break;
-				case 2:
-					lava1.paint(g);
-					break;
-				case 3:
-					lava2.paint(g);
-					break;
-				case 4:
-					cliff0.paint(g);
-					break;
-				default:
-					last.paint(g);
-					break;
-				}
+				getLevel().paint(g);
 				g.setColor(Color.RED);
-				if (p1.hp >= 0)
-					g.drawString(p1.hp + "", 1400, 200);
+				if (s.hp >= 0)
+					g.drawString(s.hp + "", 1400, 200);
 				else
 					g.drawString("0", 1400, 200);
-				if (p1.fn3)
-					p1.debugLines(g);
+				if (s.fn3)
+					s.debugLines(g);
 			}
 		};
 		frame.setVisible(true);
@@ -137,14 +136,15 @@ public class StickManAdventure {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		boolean lastSpaceCheck = false;
 
-		p1.setStats(20, 30, 0);
-		Zone.setP1(p1);
+		s.setStats(20, 30, 0);
+		Zone.setP1(s);
 		while (true) {
-
+			xo = (frameWidth / 2)-s.x;
+			yo = (frameHeight / 2)-s.y;
 			frame.pack();
-			p1.frame = frame;
-			if (p1.vkgrave) {
-				if (p1.codePressed != KeyEvent.VK_BACK_QUOTE == false) {
+			s.frame = frame;
+			if (s.vkgrave) {
+				if (s.codePressed != KeyEvent.VK_BACK_QUOTE == false) {
 					break;
 				}
 				String Speed = JOptionPane.showInputDialog("Speed:");
@@ -171,63 +171,38 @@ public class StickManAdventure {
 					doubleJumps = Integer.parseInt(DoubleJumps);
 				} catch (NumberFormatException e) {
 				}
-				p1.setStats(speed, jump, wallJump, doubleJumps);
+				s.setStats(speed, jump, wallJump, doubleJumps);
 				String Stage = JOptionPane.showInputDialog("Stage:");
 				try {
 					stage = Integer.parseInt(Stage);
 				} catch (NumberFormatException e) {
 				}
-				p1.vkgrave = false;
-			}
-			
-			if (p1.vkd) {
-				p1.walk(true, true);
-			} else {
-				p1.walk(false, true);
-			}
-			if (p1.vka) {
-				p1.walk(true, false);
-			} else {
-				p1.walk(false, false);
+				s.vkgrave = false;
 			}
 
-			if (p1.vkspace) {
+			if (s.vkd) {
+				s.walk(true, true);
+			} else {
+				s.walk(false, true);
+			}
+			if (s.vka) {
+				s.walk(true, false);
+			} else {
+				s.walk(false, false);
+			}
+
+			if (s.vkspace) {
 				if (lastSpaceCheck == false) {
-					p1.jump();
+					s.jump();
 				}
 				lastSpaceCheck = true;
 			} else {
 				lastSpaceCheck = false;
 			}
-			p1.setFloat(p1.vkshift && !p1.vkspace);
-			switch (stage) {
-			case -8:
-				tyq.update();
-				break;
-			case 0:
-				start.update();
-				break;
-			case 1:
-				lava0.update();
-				break;
-			case 2:
-				lava1.update();
-				break;
-			case 3:
-				lava2.update();
-				break;
-			case 4:
-				cliff0.update();
-				break;
-			default:
-				last.update();
-				break;
-			}
-			if (p1.vkw)
-				lastWCheck = true;
-			else
-				lastWCheck = false;
-			p1.update();
+			s.setFloat(s.vkshift && !s.vkspace);
+			getLevel().update();
+			lastWCheck = s.vkw;
+			s.update();
 			panel.repaint();
 			System.out.println(stage);
 			try {

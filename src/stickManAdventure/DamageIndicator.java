@@ -19,12 +19,14 @@ public class DamageIndicator {
 	}
 
 	public void paint(Graphics g) {
+		int xo = StickManAdventure.xo;
+		int yo = StickManAdventure.yo;
 		g.setColor(color);
 		if (time < 20) {
 			if (damage > 0)
-				g.drawString("-" + damage, x, y);
+				g.drawString("-" + damage, x + xo, y + yo);
 			if (damage < 0)
-				g.drawString("+" + -damage, x, y); 
+				g.drawString("+" + -damage, x + xo, y + yo); 
 
 			if (damage == 0)
 				g.drawString("0", x, y);

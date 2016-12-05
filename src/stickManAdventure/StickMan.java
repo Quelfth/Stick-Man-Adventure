@@ -24,31 +24,12 @@ public class StickMan implements KeyListener {
 	int yC = -96;
 	int velX = 0;
 	int velY = 0;
+	StickManAdventure adv = new StickManAdventure();
 	boolean dir = true;
 	BufferedImage idleLeft;
 	BufferedImage idleRight;
 	BufferedImage[] goLeft = new BufferedImage[10];
-	BufferedImage goLeft0;
-	BufferedImage goLeft1;
-	BufferedImage goLeft2;
-	BufferedImage goLeft3;
-	BufferedImage goLeft4;
-	BufferedImage goLeft5;
-	BufferedImage goLeft6;
-	BufferedImage goLeft7;
-	BufferedImage goLeft8;
-	BufferedImage goLeft9;
 	BufferedImage[] goRight = new BufferedImage[10];
-	BufferedImage goRight0;
-	BufferedImage goRight1;
-	BufferedImage goRight2;
-	BufferedImage goRight3;
-	BufferedImage goRight4;
-	BufferedImage goRight5;
-	BufferedImage goRight6;
-	BufferedImage goRight7;
-	BufferedImage goRight8;
-	BufferedImage goRight9;
 	BufferedImage jumpingLeft;
 	BufferedImage jumpingRight;
 	BufferedImage climbingLeftLookingLeft;
@@ -183,9 +164,9 @@ public class StickMan implements KeyListener {
 
 	public void draw(Graphics g, BufferedImage skin) {
 		if (dir) {
-			g.drawImage(skin, x - 88, y - 256, null);
+			g.drawImage(skin, x - 88 + StickManAdventure.xo, y - 256 + StickManAdventure.yo, null);
 		} else {
-			g.drawImage(skin, x - 96, y - 256, null);
+			g.drawImage(skin, x - 96 + StickManAdventure.xo, y - 256 + StickManAdventure.yo, null);
 		}
 
 	}
@@ -283,16 +264,18 @@ public class StickMan implements KeyListener {
 	}
 
 	public void debugLines(Graphics g) {
+		int xo = StickManAdventure.xo;
+		int yo = StickManAdventure.yo;
 		g.setColor(new Color(255, 0, 0));
-		g.drawLine(0, roof, frameWidth, roof);
+		g.drawLine(0, roof + yo, frameWidth, roof + yo);
 		g.setColor(new Color(0, 0, 255));
-		g.drawLine(0, ground - 1, frameWidth, ground - 1);
+		g.drawLine(0, ground - 1 + yo, frameWidth, ground - 1 + yo);
 		g.setColor(new Color(0, 255, 0));
-		g.drawLine(leftSide, 0, leftSide, frameHeight);
+		g.drawLine(leftSide + xo, 0, leftSide + xo, frameHeight);
 		g.setColor(new Color(255, 255, 0));
-		g.drawLine(rightSide - 1, 0, rightSide - 1, frameHeight);
+		g.drawLine(rightSide - 1 + xo, 0, rightSide - 1 + xo, frameHeight);
 		g.setColor(new Color(0, 127, 255));
-		g.drawRect(x, y2, 72, 192);
+		g.drawRect(x + xo, y2 + yo, 72, 192);
 	}
 
 	// Collision
