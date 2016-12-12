@@ -210,7 +210,7 @@ public class Zone {
 		return s.y <= y1 && s.y2 >= y2 && s.x >= x1 && s.x2 <= x2;
 	}
 
-	public void update() {
+	public void update(StickMan interactee) {
 		indicator.update();
 		switch (type) {
 		case -2:

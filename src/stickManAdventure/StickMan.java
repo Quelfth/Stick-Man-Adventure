@@ -11,20 +11,15 @@ import java.util.TreeSet;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
-public class StickMan implements KeyListener {
-	int x = 0;
-	int y = 0;
+public class StickMan extends Entity implements KeyListener{
 	int spawnX = 0;
 	int spawnY = 0;
-	int hp = 0;
-	int maxHp = 0;
 	int x2 = 72;
 	int y2 = -192;
 	int xC = 36;
 	int yC = -96;
 	int velX = 0;
 	int velY = 0;
-	StickManAdventure adv = new StickManAdventure();
 	boolean dir = true;
 	BufferedImage idleLeft;
 	BufferedImage idleRight;
@@ -378,8 +373,8 @@ public class StickMan implements KeyListener {
 				fn3 = true;
 		}
 		zonesLeft.add(x);
-		zonesRight.add(frameWidth - x2);
-		zonesUp.add(y2);
+		zonesRight.add(StickManAdventure.getLevel().width - x2);
+		zonesUp.add(y2 - frameHeight + StickManAdventure.getLevel().height);
 		zonesDown.add(frameHeight - y);
 		ground = y + zonesDown.first();
 		roof = y2 - zonesUp.first();
