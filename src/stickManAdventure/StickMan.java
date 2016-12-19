@@ -14,10 +14,6 @@ import javax.swing.JFrame;
 public class StickMan extends Entity implements KeyListener{
 	int spawnX = 0;
 	int spawnY = 0;
-	int x2 = 72;
-	int y2 = -192;
-	int xC = 36;
-	int yC = -96;
 	int velX = 0;
 	int velY = 0;
 	boolean dir = true;
@@ -72,13 +68,9 @@ public class StickMan extends Entity implements KeyListener{
 	boolean rising = false;
 	boolean retreating = false;
 	boolean running = false;
-	TreeSet<Integer> zonesLeft = new TreeSet<Integer>();
-	TreeSet<Integer> zonesRight = new TreeSet<Integer>();
-	TreeSet<Integer> zonesUp = new TreeSet<Integer>();
-	TreeSet<Integer> zonesDown = new TreeSet<Integer>();
-	int invisibilityFrames = 0;
 
 	public StickMan(int _x, int _y, JFrame _frame) {
+		name = "Stick Man";
 		spawnX = _x;
 		spawnY = _y;
 		x = _x;

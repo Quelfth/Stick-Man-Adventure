@@ -3,19 +3,23 @@ package stickManAdventure;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import javax.swing.JFrame;
+
 public class Level {
 	private static final int MAX_DOORS = 16;
 	private static final int MAX_ZONES = 256;
+	private static final int MAX_ENTS = 256;
 	Zone[] z = new Zone[MAX_ZONES];
 	Zone[] d = new Zone[MAX_DOORS];
-	StickMan s = null;
+	Entity[] e = new Entity[MAX_ENTS + 1];
 	int nextZone = 0;
 	int nextDoor = 0;
+	int nextEnt = 0;
 	int height = 0;
 	int width = 0;
 
 	public Level(StickMan s, int w, int h) {
-		this.s = s;
+		e[MAX_ENTS] = s;
 		width = w;
 		height = h;
 	}
@@ -28,6 +32,10 @@ public class Level {
 			this.z[nextZone] = z;
 			nextZone++;
 		}
+	}
+
+	public void add(Entity e) {
+
 	}
 
 	public void paint(Graphics g) {
@@ -45,7 +53,7 @@ public class Level {
 				break;
 			d[i].paint(g);
 		}
-		s.paint(g);
+		e[MAX_ENTS].paint(g);
 		for (int i = 0; i < MAX_ZONES; i++) {
 			if (z[i] == null)
 				return;
@@ -57,18 +65,22 @@ public class Level {
 		for (int i = 0; i < MAX_ZONES; i++) {
 			if (z[i] == null)
 				break;
-			z[i].update(s);
+			for (int j = 0; j <= MAX_ENTS; j++)
+				if(e[j] != null)
+					z[i].update(e[j]);
+				else
+					break;
 		}
 		for (int i = 0; i < MAX_DOORS; i++) {
 			if (d[i] == null)
 				return;
-			d[i].update(s);
+			d[i].update(e[MAX_ENTS]);
 		}
-		s.update();
+		e[MAX_ENTS].update();
 	}
-	
-	public void updateInteractions(){
-		
+
+	public void updateInteractions() {
+
 	}
 
 }

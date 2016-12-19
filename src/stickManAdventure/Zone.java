@@ -19,6 +19,7 @@ public class Zone {
 	int gy1 = 0;
 	int gy2 = 0;
 	private int func0;
+	Entity ent = null;
 	DamageIndicator indicator = new DamageIndicator(0, 0, 0, null);
 
 	public void setAdData(int adData) {
@@ -36,86 +37,94 @@ public class Zone {
 		height = y1 - y2;
 	}
 
-	private void mapHorizontalCollision(StickMan s) {
-		for (int i = s.y2; i < s.y; i++) {
+	private void mapHorizontalCollision() {
+		//for all y values the entity occupies
+		for (int i = ent.y2; i < ent.y; i++) {
+			//if the zone occupies that x
 			if (i < y1 && i > y2) {
-				if (s.x - x2 >= 0) {
-					s.zonesLeft.add(s.x - x2);
+				if (ent.x - x2 >= 0) {
+					ent.zonesLeft.add(ent.x - x2);
 				}
-				if (x1 - s.x2 >= 0) {
-					s.zonesRight.add(x1 - s.x2);
+				if (x1 - ent.x2 >= 0) {
+					ent.zonesRight.add(x1 - ent.x2);
 				}
 			}
 		}
 	}
 
-	private void mapVerticalCollision(StickMan s) {
-		for (int i = s.x; i < s.x2; i++) {
+	private void mapVerticalCollision() {
+		//for all x values the entity occupies
+		for (int i = ent.x; i < ent.x2; i++) {
+			//if the zone occupies that x value as well
 			if (i > x1 && i < x2) {
-				if (s.y2 - y1 >= 0) {
-					s.zonesUp.add(s.y2 - y1);
+				//if the top of the entity is below the bottom of the zone
+				if (ent.y2 - y1 >= 0) {
+					//add the distance between them to zonesUp
+					ent.zonesUp.add(ent.y2 - y1);
 				}
-				if (y2 - s.y >= 0) {
-					s.zonesDown.add(y2 - s.y);
+				//if the bottom of the entity is above the top of the zone
+				if (y2 - ent.y >= 0) {
+					//add the distance between them to zonesDown
+					ent.zonesDown.add(y2 - ent.y);
 				}
 			}
 		}
 	}
 
-	private void mapTopCollision(StickMan s) {
-		for (int i = s.x; i < s.x2; i++) {
+	private void mapTopCollision(Entity e) {
+		for (int i = e.x; i < e.x2; i++) {
 			if (i > x1 && i < x2) {
-				if (y2 - s.y >= 0) {
-					s.zonesDown.add(y2 - s.y);
+				if (y2 - e.y >= 0) {
+					e.zonesDown.add(y2 - e.y);
 				}
 			}
 		}
 	}
 
-	private void mapBottomCollision(StickMan s) {
-		for (int i = s.x; i < s.x2; i++) {
+	private void mapBottomCollision(Entity e) {
+		for (int i = e.x; i < e.x2; i++) {
 			if (i > x1 && i < x2) {
-				if (s.y2 - y1 >= 0) {
-					s.zonesUp.add(s.y2 - y1);
+				if (e.y2 - y1 >= 0) {
+					e.zonesUp.add(e.y2 - y1);
 				}
 			}
 		}
 	}
 
-	private void mapLeftCollision(StickMan s) {
-		for (int i = s.y2; i < s.y; i++) {
+	private void mapLeftCollision(Entity e) {
+		for (int i = e.y2; i < e.y; i++) {
 			if (i < y1 && i > y2) {
-				if (x1 - s.x2 >= 0) {
-					s.zonesRight.add(x1 - s.x2);
+				if (x1 - e.x2 >= 0) {
+					e.zonesRight.add(x1 - e.x2);
 				}
 			}
 		}
 	}
 
-	private void mapRightCollision(StickMan s) {
-		for (int i = s.y2; i < s.y; i++) {
+	private void mapRightCollision(Entity e) {
+		for (int i = e.y2; i < e.y; i++) {
 			if (i < y1 && i > y2) {
-				if (s.x - x2 >= 0) {
-					s.zonesLeft.add(s.x - x2);
+				if (e.x - x2 >= 0) {
+					e.zonesLeft.add(e.x - x2);
 				}
 			}
 		}
 	}
 
 	private void mapCollision() {
-		mapVerticalCollision(s);
-		mapHorizontalCollision(s);
+		mapVerticalCollision();
+		mapHorizontalCollision();
 	}
 
 	private void mapUpwardMotionCancel() {
-		if (s.y2 < y1 && detHIntersect() && s.velY > 0 && !(s.y2 < y2)) {
-			s.velY = 0;
+		if (ent.y2 < y1 && detHIntersect() && ent.velY > 0 && !(ent.y2 < y2)) {
+			ent.velY = 0;
 		}
 	}
 
 	private void mapDownwardMotionCancel() {
-		if (s.y > y2 && detHIntersect() && s.velY < 1 && !(s.y > y1)) {
-			s.velY = 1;
+		if (ent.y > y2 && detHIntersect() && ent.velY < 1 && !(ent.y > y1)) {
+			ent.velY = 1;
 		}
 	}
 
@@ -125,7 +134,7 @@ public class Zone {
 	}
 
 	public boolean detVIntersect() {
-		for (int i = s.y2; i < s.y; i++) {
+		for (int i = ent.y2; i < ent.y; i++) {
 			if (i < y1 && i > y2) {
 				return true;
 			}
@@ -134,7 +143,7 @@ public class Zone {
 	}
 
 	public boolean detHIntersect() {
-		for (int i = s.x; i < s.x2; i++) {
+		for (int i = ent.x; i < ent.x2; i++) {
 			if (i > x1 && i < x2) {
 				return true;
 			}
@@ -148,10 +157,10 @@ public class Zone {
 
 	private void mapDamage(int damage, int velocityV, int velocityH) {
 		if (detIntersect()) {
-			s.hp -= damage;
-			s.invisibilityFrames = 20;
-			s.extraVel += velocityH;
-			s.velY += velocityV;
+			ent.hp -= damage;
+			ent.invisibilityFrames = 20;
+			ent.extraVel += velocityH;
+			ent.velY += velocityV;
 			indicator = new DamageIndicator(s.xC, s.yC, damage, Color.RED);
 		}
 	}
@@ -186,8 +195,7 @@ public class Zone {
 					break;
 				case 0:
 					// if you can go through the door && pressing w
-					if (s.hp > 0 && ((StickManAdventure.stage > 0
-							&& (detFullIntersect() && s.vkw && StickManAdventure.lastWCheck))
+					if (s.hp > 0 && ((StickManAdventure.stage > 0 && (detFullIntersect() && s.vkw && StickManAdventure.lastWCheck))
 							|| (StickManAdventure.stage <= 0 && (s.onFloor || (detFullIntersect() && s.onWall))))) {
 						// go through the door
 						StickManAdventure.stage++;
@@ -210,7 +218,8 @@ public class Zone {
 		return s.y <= y1 && s.y2 >= y2 && s.x >= x1 && s.x2 <= x2;
 	}
 
-	public void update(StickMan interactee) {
+	public void update(Entity ent) {
+		this.ent = ent;
 		indicator.update();
 		switch (type) {
 		case -2:
@@ -267,7 +276,8 @@ public class Zone {
 			}
 			break;
 		case 3:
-			mapFunction(0, metaType, adData);
+			if (this.ent.name.equals("Stick Man"))
+				mapFunction(0, metaType, adData);
 			break;
 		}
 	}
@@ -366,7 +376,6 @@ public class Zone {
 		g.fillRect(x1 + StickManAdventure.xo + (width / 7), y2 + StickManAdventure.yo + (height * 6 / 11), width * 2 / 7, height * 4 / 11);
 		g.fillRect(x1 + StickManAdventure.xo + (width * 4 / 7), y2 + StickManAdventure.yo + (height * 6 / 11), width * 2 / 7, height * 4 / 11);
 		g.setColor(knob);
-		g.fillOval(x1 + StickManAdventure.xo + (width * 49 / 56), y2 + StickManAdventure.yo + (height * 6 / 11) + ((height / 2) / 56), width * 6 / 56,
-				width * 6 / 56);
+		g.fillOval(x1 + StickManAdventure.xo + (width * 49 / 56), y2 + StickManAdventure.yo + (height * 6 / 11) + ((height / 2) / 56), width * 6 / 56, width * 6 / 56);
 	}
 }
