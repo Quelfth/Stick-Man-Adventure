@@ -97,6 +97,7 @@ public class StickManAdventure {
 		cliff0.add(new Zone(898, 1050, 900, 398, 1, 0));
 		cliff0.add(new Zone(980, 500, 1500, 460, 1, 0));
 		cliff0.add(doorS0);
+		Level enemy0 = new Level(s, 1500, 1050);
 		Level tyq = new Level(s, 1500, 1050);
 		tyq.add(new Zone(1300, 1050, 1500, 650, 3, 2));
 		Level last = new Level(s, 65536, 65536);
@@ -107,6 +108,7 @@ public class StickManAdventure {
 		levels[2 + 127] = lava1;
 		levels[3 + 127] = lava2;
 		levels[4 + 127] = cliff0;
+		levels[5 + 127] = enemy0;
 		JPanel panel = new JPanel() {
 			/**
 			 * 

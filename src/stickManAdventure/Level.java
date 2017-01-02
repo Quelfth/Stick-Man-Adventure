@@ -6,11 +6,14 @@ import java.awt.Graphics;
 public class Level {
 	private static final int MAX_DOORS = 16;
 	private static final int MAX_ZONES = 256;
+	private static final int MAX_ENTS = 256;
 	Zone[] z = new Zone[MAX_ZONES];
 	Zone[] d = new Zone[MAX_DOORS];
+	Entity[] e = new Entity[MAX_ENTS];
 	StickMan s = null;
 	int nextZone = 0;
 	int nextDoor = 0;
+	int nextEnt = 0;
 	int height = 0;
 	int width = 0;
 
@@ -29,7 +32,10 @@ public class Level {
 			nextZone++;
 		}
 	}
-
+	public void add(Entity e) {
+		this.e[nextEnt] = e;
+		nextEnt++;
+	}
 	public void paint(Graphics g) {
 		int xo = StickManAdventure.xo;
 		int yo = StickManAdventure.yo;

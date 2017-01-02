@@ -35,7 +35,7 @@ public class Zone {
 		width = x2 - x1;
 		height = y1 - y2;
 	}
-
+//for mapping collision on normal objects
 	private void mapHorizontalCollision(StickMan s) {
 		for (int i = s.y2; i < s.y; i++) {
 			if (i < y1 && i > y2) {
@@ -61,7 +61,7 @@ public class Zone {
 			}
 		}
 	}
-
+//For mapping collision on one way platforms
 	private void mapTopCollision(StickMan s) {
 		for (int i = s.x; i < s.x2; i++) {
 			if (i > x1 && i < x2) {
@@ -101,7 +101,7 @@ public class Zone {
 			}
 		}
 	}
-
+//Calls mapHorizonalCollision and mapVerticalCollision
 	private void mapCollision() {
 		mapVerticalCollision(s);
 		mapHorizontalCollision(s);
@@ -210,7 +210,7 @@ public class Zone {
 		return s.y <= y1 && s.y2 >= y2 && s.x >= x1 && s.x2 <= x2;
 	}
 
-	public void update(StickMan interactee) {
+	public void update(Entity e) {
 		indicator.update();
 		switch (type) {
 		case -2:
