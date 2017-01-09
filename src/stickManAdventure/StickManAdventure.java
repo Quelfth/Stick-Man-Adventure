@@ -98,6 +98,7 @@ public class StickManAdventure {
 		cliff0.add(new Zone(980, 500, 1500, 460, 1, 0));
 		cliff0.add(doorS0);
 		Level enemy0 = new Level(s, 1500, 1050);
+		enemy0.add(new Entity(200, 200, 300, 300));
 		Level tyq = new Level(s, 1500, 1050);
 		tyq.add(new Zone(1300, 1050, 1500, 650, 3, 2));
 		Level last = new Level(s, 65536, 65536);
@@ -206,7 +207,7 @@ public class StickManAdventure {
 			lastWCheck = s.vkw;
 			s.update();
 			panel.repaint();
-			System.out.println(stage);
+
 			try {
 				Thread.sleep(1000 / 60);
 			} catch (InterruptedException e) {

@@ -14,8 +14,6 @@ import javax.swing.JFrame;
 public class StickMan extends Entity implements KeyListener{
 	int spawnX = 0;
 	int spawnY = 0;
-	int x2 = 72;
-	int y2 = -192;
 	int xC = 36;
 	int yC = -96;
 	int velX = 0;
@@ -78,11 +76,10 @@ public class StickMan extends Entity implements KeyListener{
 	TreeSet<Integer> zonesDown = new TreeSet<Integer>();
 	int invisibilityFrames = 0;
 
-	public StickMan(int _x, int _y, JFrame _frame) {
-		spawnX = _x;
-		spawnY = _y;
-		x = _x;
-		y = _y;
+	public StickMan(int x, int y, JFrame _frame) {
+		super(x, y, x+72, y-192);
+		spawnX = x;
+		spawnY = y;
 		maxHp = 60;
 		hp = maxHp;
 		frame = _frame;

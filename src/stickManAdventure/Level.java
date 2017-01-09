@@ -51,6 +51,11 @@ public class Level {
 				break;
 			d[i].paint(g);
 		}
+		for (int i = 0; i < MAX_ENTS; i++) {
+			if (e[i] == null)
+				break;
+			e[i].paint(g);
+		}
 		s.paint(g);
 		for (int i = 0; i < MAX_ZONES; i++) {
 			if (z[i] == null)
@@ -64,6 +69,11 @@ public class Level {
 			if (z[i] == null)
 				break;
 			z[i].update(s);
+		}
+		for (int i = 0; i < MAX_ENTS; i++) {
+			if (e[i] == null)
+				break;
+			e[i].update();
 		}
 		for (int i = 0; i < MAX_DOORS; i++) {
 			if (d[i] == null)
