@@ -11,7 +11,6 @@ public class Entity {
 	int y2 = 0;
 	int w = 0;
 	int h = 0;
-	StickMan s;
 	int hp = 0;
 	int maxHp = 20;
 	int velX = 0;
@@ -21,45 +20,104 @@ public class Entity {
 	TreeSet<Integer> wallsRight = new TreeSet<Integer>();
 	TreeSet<Integer> ceilings = new TreeSet<Integer>();
 	TreeSet<Integer> floors = new TreeSet<Integer>();
-	
+
 	public Entity(int x, int y, int x2, int y2) {
 		this.x = x;
 		this.y = y;
-		w = x2-x;
-		h = y2-y;
+		w = x2 - x;
+		h = y2 - y;
 	}
-	
-	public void update(){
+
+	public void update() {
 		x2 = x + w;
 		y2 = y + h;
 		wallsLeft.add(x);
 		wallsRight.add(StickManAdventure.getLevel().width - x2);
 		ceilings.add(y2 - StickManAdventure.frameHeight + StickManAdventure.getLevel().height);
-		floors.add(StickManAdventure.frameHeight - y);
+		floors.add(StickManAdventure.frameHeight - y2);
 		velY--;
-		if (ceilings.first() > velY && floors.first() > -velY) {
+		if (/* ceilings.first() > velY && */ floors.first() >= -velY) {
 			y -= velY;
-		}else{
-			if(velY>0)
+		} else {
+			if (velY > 0)
 				y += ceilings.first();
-			if(velY>0)
+			if (velY > 0)
 				y -= floors.first();
 			velY = 0;
 		}
-		if (y2 > StickManAdventure.frameHeight)
-			velY += 9;
+		if (y2 > StickManAdventure.frameHeight) {
+			y = StickManAdventure.frameHeight - h;
+			velY = 0;
+		}
+		x += velX;
+		seek(StickManAdventure.s);
+		bite(StickManAdventure.s);
 		wallsLeft.clear();
 		wallsRight.clear();
 		ceilings.clear();
 		floors.clear();
 	}
-	
-	public void paint(Graphics g){
-		paintBox(g);
+
+	public void seek(Entity subject) {
+		if (!touchH(subject)) {
+			if (subject.x < x)
+				move(false);
+			else if (subject.x > x)
+				move(true);
+		} else {
+			if (velX > 0)
+				velX--;
+			else if (velX < 0)
+				velX++;
+		}
+	}
+
+	public void move(boolean dir) {
+		if (dir) {
+			if (velX >= 0)
+				velX++;
+			else
+				velX += 2;
+		} else {
+			if (velX <= 0)
+				velX--;
+			else
+				velX -= 2;
+		}
 	}
 	
-	public void paintBox(Graphics g){
+	public boolean touchH(Entity subject) {
+		for (int i = subject.x; i < subject.x2; i++) {
+			if (i > x && i < x2) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean touchV(Entity subject) {
+		for (int i = subject.y; i < subject.y2; i++) {
+			if(i > y && i < y2) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean touch(Entity subject){
+		return touchH(subject) && touchV(subject);
+	}
+	public void bite(Entity subject) {
+		if (touch(subject))
+			subject.hp--;
+	}
+
+	public void paint(Graphics g) {
+		paintBox(g);
+	}
+
+	public void paintBox(Graphics g) {
 		g.setColor(new Color(0, 0, 0));
-		g.fillRect(x+StickManAdventure.xo, y+StickManAdventure.yo, w, h);
+		g.fillRect(x + StickManAdventure.xo, y + StickManAdventure.yo, w, h);
 	}
 }

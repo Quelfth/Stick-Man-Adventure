@@ -20,6 +20,7 @@ public class StickManAdventure {
 	static int levelHeight = 0;
 	static int frameWidth = 0;
 	static int frameHeight = 0;
+	static StickMan s;
 
 	public static Level getLevel() {
 		// if there isn't a level in the current stage value
@@ -46,7 +47,7 @@ public class StickManAdventure {
 		frameWidth = Integer.parseInt(FrameWidth);
 		frameHeight = Integer.parseInt(FrameHeight);
 		frame.setSize(frameWidth, frameHeight);
-		StickMan s = new StickMan(96, 0, frame);
+		s = new StickMan(96, 0, frame);
 		Zone zoneA = new Zone(200, 800, 400, 200, 1, 0);
 		Zone zoneB = new Zone(1000, 700, 1200, 500, 2, 0);
 		Zone zoneC = new Zone(0, 300, 200, 200, 2, 0);
@@ -207,7 +208,10 @@ public class StickManAdventure {
 			lastWCheck = s.vkw;
 			s.update();
 			panel.repaint();
-
+			try{
+			System.out.println(frameHeight - levels[5+127].e[0].y2 + " " + levels[5+127].e[0].velY);
+			}catch(Exception e){
+			}
 			try {
 				Thread.sleep(1000 / 60);
 			} catch (InterruptedException e) {
