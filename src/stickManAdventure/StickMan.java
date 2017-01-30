@@ -76,13 +76,13 @@ public class StickMan extends Entity implements KeyListener{
 	TreeSet<Integer> zonesDown = new TreeSet<Integer>();
 	int invisibilityFrames = 0;
 
-	public StickMan(int x, int y, JFrame _frame) {
+	public StickMan(int x, int y, JFrame frame) {
 		super(x, y, x+72, y-192);
 		spawnX = x;
 		spawnY = y;
 		maxHp = 60;
 		hp = maxHp;
-		frame = _frame;
+		this.frame = frame;
 
 		try {
 			idleLeft = loadImgRes("idleLeft.png");
@@ -138,6 +138,10 @@ public class StickMan extends Entity implements KeyListener{
 		case 4:
 			spawnX = 10;
 			spawnY = 300;
+			break;
+		case 5:
+			spawnX = 96;
+			spawnY = 1049;
 			break;
 		default:
 			spawnX = x;

@@ -11,11 +11,11 @@ public class DamageIndicator {
 	int time = 0;
 	Color color = null;
 
-	public DamageIndicator(int _x, int _y, int _damage, Color _color) {
-		color = _color;
-		damage = _damage;
-		x = _x;
-		y = _y;
+	public DamageIndicator(int x, int y, int damage, Color color) {
+		this.color = color;
+		this.damage = damage;
+		this.x = x;
+		this.y = y;
 	}
 
 	public void paint(Graphics g) {

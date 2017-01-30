@@ -48,6 +48,19 @@ public class Zone {
 			}
 		}
 	}
+	
+	private void mapHorizontalCollision(Entity s) {
+		for (int i = s.y2; i > s.y; i--) {
+			if (i < y1 && i > y2) {
+				if (s.x - x2 >= 0) {
+					s.wallsLeft.add(s.x - x2);
+				}
+				if (x1 - s.x2 >= 0) {
+					s.wallsRight.add(x1 - s.x2);
+				}
+			}
+		}
+	}
 
 	private void mapVerticalCollision(StickMan s) {
 		for (int i = s.x; i < s.x2; i++) {
@@ -57,6 +70,18 @@ public class Zone {
 				}
 				if (y2 - s.y >= 0) {
 					s.zonesDown.add(y2 - s.y);
+				}
+			}
+		}
+	}
+	private void mapVerticalCollision(Entity s) {
+		for (int i = s.x; i < s.x2; i++) {
+			if (i > x1 && i < x2) {
+				if (s.y2 - y1 >= 0) {
+					s.ceilings.add(s.y2 - y1);
+				}
+				if (y2 - s.y >= 0) {
+					s.floors.add(y2 - s.y);
 				}
 			}
 		}
@@ -209,7 +234,7 @@ public class Zone {
 	private boolean detFullIntersect() {
 		return s.y <= y1 && s.y2 >= y2 && s.x >= x1 && s.x2 <= x2;
 	}
-
+//Update
 	public void update(Entity e) {
 		indicator.update();
 		switch (type) {
@@ -275,7 +300,7 @@ public class Zone {
 	private void fillZone(Graphics g) {
 		g.fillRect(x1 + StickManAdventure.xo, y2 + StickManAdventure.yo, x2 - x1, y1 - y2);
 	}
-
+//paint
 	public void paint(Graphics g) {
 		indicator.paint(g);
 		int[] TriX = null;

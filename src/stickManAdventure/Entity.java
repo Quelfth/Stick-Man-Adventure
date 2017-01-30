@@ -2,11 +2,14 @@ package stickManAdventure;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.TreeSet;
 
 public class Entity {
 	int x = 0;
 	int y = 0;
+	int xC = 0;
+	int yC = 0;
 	int x2 = 0;
 	int y2 = 0;
 	int w = 0;
@@ -20,6 +23,11 @@ public class Entity {
 	TreeSet<Integer> wallsRight = new TreeSet<Integer>();
 	TreeSet<Integer> ceilings = new TreeSet<Integer>();
 	TreeSet<Integer> floors = new TreeSet<Integer>();
+	ArrayList<DamageIndicator> indicators = new ArrayList<DamageIndicator>();
+
+	void indicate(int x, int y, int dam) {
+		indicators.add(new DamageIndicator(x, y, dam, dam < 0 ? new Color(255, 0, 0) : new Color(0, 255, 0)));
+	}
 
 	public Entity(int x, int y, int x2, int y2) {
 		this.x = x;
@@ -31,6 +39,8 @@ public class Entity {
 	public void update() {
 		x2 = x + w;
 		y2 = y + h;
+		xC = x + w / 2;
+		yC = y + h / 2;
 		wallsLeft.add(x);
 		wallsRight.add(StickManAdventure.getLevel().width - x2);
 		ceilings.add(y2 - StickManAdventure.frameHeight + StickManAdventure.getLevel().height);
@@ -52,6 +62,9 @@ public class Entity {
 		x += velX;
 		seek(StickManAdventure.s);
 		bite(StickManAdventure.s);
+		for(DamageIndicator i : indicators){
+			i.update();
+		}
 		wallsLeft.clear();
 		wallsRight.clear();
 		ceilings.clear();
@@ -85,7 +98,7 @@ public class Entity {
 				velX -= 2;
 		}
 	}
-	
+
 	public boolean touchH(Entity subject) {
 		for (int i = subject.x; i < subject.x2; i++) {
 			if (i > x && i < x2) {
@@ -94,26 +107,32 @@ public class Entity {
 		}
 		return false;
 	}
-	
+
 	public boolean touchV(Entity subject) {
-		for (int i = subject.y; i < subject.y2; i++) {
-			if(i > y && i < y2) {
+		for (int i = subject.y; i > subject.y2; i--) {
+			if (i > y && i < y2) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public boolean touch(Entity subject){
+	public boolean touch(Entity subject) {
 		return touchH(subject) && touchV(subject);
 	}
+
 	public void bite(Entity subject) {
-		if (touch(subject))
+		if (touch(subject)){
 			subject.hp--;
+			indicate(subject.xC, subject.yC, 1);
+		}
+			
 	}
 
 	public void paint(Graphics g) {
 		paintBox(g);
+		for(DamageIndicator i : indicators)
+			i.paint(g);
 	}
 
 	public void paintBox(Graphics g) {

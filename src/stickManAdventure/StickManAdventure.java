@@ -97,6 +97,7 @@ public class StickManAdventure {
 		cliff0.add(new Zone(900, 1050, 980, 400, 1, 0));
 		cliff0.add(new Zone(898, 1050, 900, 398, 1, 0));
 		cliff0.add(new Zone(980, 500, 1500, 460, 1, 0));
+		cliff0.add(new Zone(1300, 450, 1500, 50, 3, 0));
 		cliff0.add(doorS0);
 		Level enemy0 = new Level(s, 1500, 1050);
 		enemy0.add(new Entity(200, 200, 300, 300));
