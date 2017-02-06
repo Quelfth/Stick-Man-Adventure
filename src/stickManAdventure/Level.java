@@ -73,7 +73,7 @@ public class Level {
 		for (int i = 0; i < MAX_ENTS; i++) {
 			if (e[i] == null)
 				break;
-			e[i].update();
+			e[i].eupdate();
 		}
 		for (int i = 0; i < MAX_DOORS; i++) {
 			if (d[i] == null)

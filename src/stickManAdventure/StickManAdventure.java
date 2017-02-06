@@ -21,6 +21,7 @@ public class StickManAdventure {
 	static int frameWidth = 0;
 	static int frameHeight = 0;
 	static StickMan s;
+	static String stop;
 
 	public static Level getLevel() {
 		// if there isn't a level in the current stage value
@@ -218,6 +219,11 @@ public class StickManAdventure {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			System.out.println(stop);
 		}
+	}
+	
+	static void stop(String stop){
+		StickManAdventure.stop = stop;
 	}
 }

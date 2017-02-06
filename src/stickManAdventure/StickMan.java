@@ -11,7 +11,7 @@ import java.util.TreeSet;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
-public class StickMan extends Entity implements KeyListener{
+public class StickMan extends Entity implements KeyListener {
 	int spawnX = 0;
 	int spawnY = 0;
 	int xC = 36;
@@ -53,13 +53,10 @@ public class StickMan extends Entity implements KeyListener{
 	boolean vkshift = false;
 	boolean vkspace = false;
 	boolean fn3 = false;
-	int jumps = 0;
-	int speed = 0;
-	int jumpForce = 0;
-	int wallJumpForce = 0;
+
 	int frameOfAnimation = 0;
 	String skinPath = "/Users/league/Desktop/Stick-Man-Adventure/src/stickManAdventure/skin/";
-	int doubleJumps = 0;
+
 	boolean onFloor = false;
 	boolean onLeft = false;
 	boolean onRight = false;
@@ -77,7 +74,7 @@ public class StickMan extends Entity implements KeyListener{
 	int invisibilityFrames = 0;
 
 	public StickMan(int x, int y, JFrame frame) {
-		super(x, y, x+72, y-192);
+		super(x, y, x + 72, y - 192);
 		spawnX = x;
 		spawnY = y;
 		maxHp = 60;
@@ -358,9 +355,7 @@ public class StickMan extends Entity implements KeyListener{
 
 	// Update
 	public void update() {
-		if (hp > maxHp) {
-			hp = maxHp;
-		}
+		super.update();
 		if (hp <= -10000) {
 			respawn();
 		}
@@ -472,26 +467,48 @@ public class StickMan extends Entity implements KeyListener{
 		}
 	}
 
+	@Override
+	public int ground() {
+		return ground;
+	}
+
+	@Override
+	public boolean onWall() {
+		return onWall;
+	}
+	
+	@Override
+	public int leftSide(){
+		return leftSide;
+	}
+	
+	@Override
+	public int rightSide(){
+		return rightSide;
+	}
+	
+	
+	
 	// Walking
-	public void walk(boolean inc, boolean _dir) {
+	public void walk(boolean inc, boolean dir) {
 		if (hp > 0) {
 			if (inc) {
-				dir = _dir;
-				if (walkVel < speed && _dir == true) {
+				this.dir = dir;
+				if (walkVel < speed && dir == true) {
 					walkVel++;
 				}
-				if (walkVel > -speed && _dir == false) {
+				if (walkVel > -speed && dir == false) {
 					walkVel--;
 				}
 			} else {
-				if (walkVel > 0 && _dir == true) {
+				if (walkVel > 0 && dir == true) {
 					if (walkVel > 3) {
 						walkVel -= 4;
 					} else {
 						walkVel = 0;
 					}
 				}
-				if (walkVel < 0 && _dir == false) {
+				if (walkVel < 0 && dir == false) {
 					if (walkVel < -3) {
 						walkVel += 4;
 					} else {

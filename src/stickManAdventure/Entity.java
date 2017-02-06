@@ -24,6 +24,19 @@ public class Entity {
 	TreeSet<Integer> ceilings = new TreeSet<Integer>();
 	TreeSet<Integer> floors = new TreeSet<Integer>();
 	ArrayList<DamageIndicator> indicators = new ArrayList<DamageIndicator>();
+	int leftWall = 0;
+	int rightWall = 0;
+	int floor = 0;
+	int ceiling = 0;
+	int ticks = 0;
+	int lastHealth = 0;
+	int lastMod = 0;
+	int jumps = 0;
+	int speed = 0;
+	int jumpForce = 0;
+	int wallJumpForce = 0;
+	int doubleJumps = 0;
+	boolean dir = false;
 
 	void indicate(int x, int y, int dam) {
 		indicators.add(new DamageIndicator(x, y, dam, dam < 0 ? new Color(255, 0, 0) : new Color(0, 255, 0)));
@@ -34,19 +47,37 @@ public class Entity {
 		this.y = y;
 		w = x2 - x;
 		h = y2 - y;
+		hp = 20;
+		jumpForce = 30;
 	}
 
 	public void update() {
+		if (hp != lastHealth)
+			lastMod = ticks % 20;
+		if (ticks % 20 == 0)
+
+			ticks++;
+		if (hp > maxHp) {
+			hp = maxHp;
+		}
+	}
+
+	public void eupdate() {
+		update();
 		x2 = x + w;
 		y2 = y + h;
 		xC = x + w / 2;
 		yC = y + h / 2;
 		wallsLeft.add(x);
 		wallsRight.add(StickManAdventure.getLevel().width - x2);
-		ceilings.add(y2 - StickManAdventure.frameHeight + StickManAdventure.getLevel().height);
+		ceilings.add(y2 + StickManAdventure.frameHeight - StickManAdventure.getLevel().height);
 		floors.add(StickManAdventure.frameHeight - y2);
+		leftWall = wallsLeft.first();
+		rightWall = wallsRight.first();
+		floor = floors.first();
+		ceiling = ceilings.first();
 		velY--;
-		if (/* ceilings.first() > velY && */ floors.first() >= -velY) {
+		if (ceilings.first() >= velY && floors.first() >= -velY) {
 			y -= velY;
 		} else {
 			if (velY > 0)
@@ -59,10 +90,17 @@ public class Entity {
 			y = StickManAdventure.frameHeight - h;
 			velY = 0;
 		}
-		x += velX;
+		if (-velX < wallsLeft.first() && velX < wallsRight.first())
+			x += velX;
+		else {
+			if (velX > 0)
+				x += wallsRight.first();
+			if (velX < 0)
+				x -= wallsLeft.first();
+		}
 		seek(StickManAdventure.s);
 		bite(StickManAdventure.s);
-		for(DamageIndicator i : indicators){
+		for (DamageIndicator i : indicators) {
 			i.update();
 		}
 		wallsLeft.clear();
@@ -82,6 +120,55 @@ public class Entity {
 				velX--;
 			else if (velX < 0)
 				velX++;
+		}
+		if (touchH(subject) && !touchV(subject))
+			jump();
+	}
+
+	public boolean onFloor() {
+		return y == ground();
+	}
+
+	public int ground() {
+		return y + floor;
+	}
+
+	public int roof() {
+		return y2 - ceiling;
+	}
+
+	public int leftSide() {
+		return x - leftWall;
+	}
+
+	public int rightSide() {
+		return x2 + rightWall;
+	}
+
+	public boolean onLeft() {
+		return x == leftSide();
+	}
+
+	public boolean onCeiling() {
+		return y2 == roof();
+	}
+
+	public boolean onRight() {
+		return x2 == rightSide();
+	}
+
+	public boolean onWall() {
+		return onLeft() || onRight();
+	}
+
+	public void jump() {
+		if (hp > 0) {
+			if (velY < 0 && (onFloor() || onWall())) {
+				velY = 0;
+			}
+			if (onFloor()) {
+				velY += jumpForce;
+			}
 		}
 	}
 
@@ -122,16 +209,16 @@ public class Entity {
 	}
 
 	public void bite(Entity subject) {
-		if (touch(subject)){
+		if (touch(subject)) {
 			subject.hp--;
 			indicate(subject.xC, subject.yC, 1);
 		}
-			
+
 	}
 
 	public void paint(Graphics g) {
 		paintBox(g);
-		for(DamageIndicator i : indicators)
+		for (DamageIndicator i : indicators)
 			i.paint(g);
 	}
 
