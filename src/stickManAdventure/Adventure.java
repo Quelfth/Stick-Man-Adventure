@@ -1,16 +1,10 @@
 package stickManAdventure;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-
-public class StickManAdventure {
+public class Adventure {
 	static int xo = 0;
 	static int yo = 0;
 	static int stage = 0;
@@ -208,10 +202,10 @@ public class StickManAdventure {
 			s.setFloat(s.vkshift && !s.vkspace);
 			getLevel().update();
 			lastWCheck = s.vkw;
-			s.update();
+
 			panel.repaint();
 			try{
-			System.out.println(frameHeight - levels[5+127].e[0].y2 + " " + levels[5+127].e[0].velY);
+			System.out.println(frameHeight - levels[5+127].e.get(0).y2 + " " + levels[5+127].e.get(0).velY);
 			}catch(Exception e){
 			}
 			try {
@@ -224,6 +218,6 @@ public class StickManAdventure {
 	}
 	
 	static void stop(String stop){
-		StickManAdventure.stop = stop;
+		Adventure.stop = stop;
 	}
 }

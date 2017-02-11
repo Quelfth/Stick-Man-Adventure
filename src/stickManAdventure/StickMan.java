@@ -1,15 +1,13 @@
 package stickManAdventure;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.TreeSet;
-
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 
 public class StickMan extends Entity implements KeyListener {
 	int spawnX = 0;
@@ -152,14 +150,14 @@ public class StickMan extends Entity implements KeyListener {
 	}
 
 	public void respawn() {
-		respawn(StickManAdventure.stage);
+		respawn(Adventure.stage);
 	}
 
 	public void draw(Graphics g, BufferedImage skin) {
 		if (dir) {
-			g.drawImage(skin, x - 88 + StickManAdventure.xo, y - 256 + StickManAdventure.yo, null);
+			g.drawImage(skin, x - 88 + Adventure.xo, y - 256 + Adventure.yo, null);
 		} else {
-			g.drawImage(skin, x - 96 + StickManAdventure.xo, y - 256 + StickManAdventure.yo, null);
+			g.drawImage(skin, x - 96 + Adventure.xo, y - 256 + Adventure.yo, null);
 		}
 
 	}
@@ -257,8 +255,8 @@ public class StickMan extends Entity implements KeyListener {
 	}
 
 	public void debugLines(Graphics g) {
-		int xo = StickManAdventure.xo;
-		int yo = StickManAdventure.yo;
+		int xo = Adventure.xo;
+		int yo = Adventure.yo;
 		g.setColor(new Color(255, 0, 0));
 		g.drawLine(0, roof + yo, frameWidth, roof + yo);
 		g.setColor(new Color(0, 0, 255));
@@ -369,8 +367,8 @@ public class StickMan extends Entity implements KeyListener {
 				fn3 = true;
 		}
 		zonesLeft.add(x);
-		zonesRight.add(StickManAdventure.getLevel().width - x2);
-		zonesUp.add(y2 - frameHeight + StickManAdventure.getLevel().height);
+		zonesRight.add(Adventure.getLevel().width - x2);
+		zonesUp.add(y2 - frameHeight + Adventure.getLevel().height);
 		zonesDown.add(frameHeight - y);
 		ground = y + zonesDown.first();
 		roof = y2 - zonesUp.first();

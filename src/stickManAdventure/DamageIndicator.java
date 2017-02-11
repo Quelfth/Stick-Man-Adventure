@@ -19,8 +19,8 @@ public class DamageIndicator {
 	}
 
 	public void paint(Graphics g) {
-		int xo = StickManAdventure.xo;
-		int yo = StickManAdventure.yo;
+		int xo = Adventure.xo;
+		int yo = Adventure.yo;
 		g.setColor(color);
 		if (time < 20) {
 			if (damage > 0)
