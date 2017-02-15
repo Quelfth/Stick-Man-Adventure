@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2423c018-03fa-4b62-8f0e-c578b991ae06" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/stickManAdventure/StickManAdventure$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/stickManAdventure/StickManAdventure.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/stickManAdventure/StickManAdventure.java" afterPath="$PROJECT_DIR$/src/stickManAdventure/Adventure.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/stickManAdventure/Hitbox.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/stickManAdventure/Adventure$1.class" afterPath="$PROJECT_DIR$/bin/stickManAdventure/Adventure$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/stickManAdventure/Adventure.class" afterPath="$PROJECT_DIR$/bin/stickManAdventure/Adventure.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/stickManAdventure/DamageIndicator.class" afterPath="$PROJECT_DIR$/bin/stickManAdventure/DamageIndicator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/stickManAdventure/Entity.class" afterPath="$PROJECT_DIR$/bin/stickManAdventure/Entity.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/stickManAdventure/Level.class" afterPath="$PROJECT_DIR$/bin/stickManAdventure/Level.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/stickManAdventure/StickMan.class" afterPath="$PROJECT_DIR$/bin/stickManAdventure/StickMan.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/stickManAdventure/Zone.class" afterPath="$PROJECT_DIR$/bin/stickManAdventure/Zone.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/stickManAdventure/Adventure.java" afterPath="$PROJECT_DIR$/src/stickManAdventure/Adventure.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/stickManAdventure/DamageIndicator.java" afterPath="$PROJECT_DIR$/src/stickManAdventure/DamageIndicator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/stickManAdventure/Entity.java" afterPath="$PROJECT_DIR$/src/stickManAdventure/Entity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/stickManAdventure/Level.java" afterPath="$PROJECT_DIR$/src/stickManAdventure/Level.java" />
@@ -38,10 +38,30 @@
       <file leaf-file-name="StickMan.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/stickManAdventure/StickMan.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="32" column="28" lean-forward="false" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
+            <state relative-caret-position="336">
+              <caret line="254" column="39" lean-forward="false" selection-start-line="254" selection-start-column="39" selection-end-line="254" selection-end-column="39" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="method#StickMan#0;class#StickMan#0" expanded="false" />
+                <element signature="method#loadImgRes#0;class#StickMan#0" expanded="false" />
+                <element signature="method#respawn#0;class#StickMan#0" expanded="false" />
+                <element signature="method#draw#0;class#StickMan#0" expanded="false" />
+                <element signature="method#visActID#0;class#StickMan#0" expanded="false" />
+                <element signature="method#paint#0;class#StickMan#0" expanded="false" />
+                <element signature="method#debugLines#0;class#StickMan#0" expanded="false" />
+                <element signature="method#floor#0;class#StickMan#0" expanded="false" />
+                <element signature="method#ceiling#0;class#StickMan#0" expanded="false" />
+                <element signature="method#leftWall#0;class#StickMan#0" expanded="false" />
+                <element signature="method#rightWall#0;class#StickMan#0" expanded="false" />
+                <element signature="method#vkIndex#0;class#StickMan#0" expanded="false" />
+                <element signature="method#update#0;class#StickMan#0" expanded="false" />
+                <element signature="method#setStats#0;class#StickMan#0" expanded="false" />
+                <element signature="method#setStats#1;class#StickMan#0" expanded="false" />
+                <element signature="method#jump#0;class#StickMan#0" expanded="false" />
+                <element signature="method#walk#0;class#StickMan#0" expanded="false" />
+                <element signature="method#setVelocity#0;class#StickMan#0" expanded="false" />
+                <element signature="method#frameClock#0;class#StickMan#0" expanded="false" />
+                <element signature="method#keyPressed#0;class#StickMan#0" expanded="false" />
+                <element signature="method#keyReleased#0;class#StickMan#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -50,8 +70,8 @@
       <file leaf-file-name="Adventure.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Adventure.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="215" column="37" lean-forward="false" selection-start-line="215" selection-start-column="37" selection-end-line="215" selection-end-column="37" />
+            <state relative-caret-position="547">
+              <caret line="202" column="79" lean-forward="false" selection-start-line="202" selection-start-column="79" selection-end-line="202" selection-end-column="79" />
               <folding>
                 <element signature="method#getLevel#0;class#Adventure#0" expanded="false" />
               </folding>
@@ -62,13 +82,12 @@
       <file leaf-file-name="Zone.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Zone.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="142" column="11" lean-forward="false" selection-start-line="142" selection-start-column="11" selection-end-line="142" selection-end-column="11" />
+            <state relative-caret-position="405">
+              <caret line="73" column="36" lean-forward="true" selection-start-line="73" selection-start-column="36" selection-end-line="73" selection-end-column="36" />
               <folding>
                 <element signature="method#Zone#0;class#Zone#0" expanded="false" />
                 <element signature="method#mapHorizontalCollision#0;class#Zone#0" expanded="false" />
                 <element signature="method#getHorizontalCollision#0;class#Zone#0" expanded="false" />
-                <element signature="method#mapVerticalCollision#0;class#Zone#0" expanded="false" />
                 <element signature="method#getVerticalCollision#0;class#Zone#0" expanded="false" />
                 <element signature="method#mapTopCollision#0;class#Zone#0" expanded="false" />
                 <element signature="method#mapBottomCollision#0;class#Zone#0" expanded="false" />
@@ -84,7 +103,6 @@
                 <element signature="method#mapDamage#0;class#Zone#0" expanded="false" />
                 <element signature="method#mapFunction#2;class#Zone#0" expanded="false" />
                 <element signature="method#update#0;class#Zone#0" expanded="false" />
-                <element signature="method#fillZone#0;class#Zone#0" expanded="false" />
                 <element signature="method#paint#0;class#Zone#0" expanded="false" />
                 <element signature="method#drawDoor#0;class#Zone#0" expanded="false" />
               </folding>
@@ -95,41 +113,84 @@
       <file leaf-file-name="Level.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Level.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="31" column="35" lean-forward="true" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
+            <state relative-caret-position="579">
+              <caret line="53" column="51" lean-forward="false" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#973#974#0" expanded="true" />
-                <element signature="e#993#994#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Entity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Entity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Entity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="65" column="23" lean-forward="true" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+            <state relative-caret-position="631">
+              <caret line="113" column="67" lean-forward="true" selection-start-line="113" selection-start-column="67" selection-end-line="113" selection-end-column="67" />
               <folding>
                 <element signature="method#takeCollision#0;class#Entity#0" expanded="false" />
-                <element signature="method#indicate#0;class#Entity#0" expanded="false" />
+                <element signature="method#Entity#0;class#Entity#0" expanded="false" />
                 <element signature="method#update#0;class#Entity#0" expanded="false" />
-                <element signature="method#eupdate#0;class#Entity#0" expanded="false" />
                 <element signature="method#seek#0;class#Entity#0" expanded="false" />
                 <element signature="method#jump#0;class#Entity#0" expanded="false" />
                 <element signature="method#move#0;class#Entity#0" expanded="false" />
                 <element signature="method#touchH#0;class#Entity#0" expanded="false" />
                 <element signature="method#touchV#0;class#Entity#0" expanded="false" />
-                <element signature="method#bite#0;class#Entity#0" expanded="false" />
-                <element signature="method#paint#0;class#Entity#0" expanded="false" />
                 <element signature="method#paintBox#0;class#Entity#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Hitbox.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Hitbox.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+              <folding>
+                <element signature="e#151#152#0" expanded="true" />
+                <element signature="e#179#180#0" expanded="true" />
+                <element signature="e#194#195#0" expanded="true" />
+                <element signature="e#222#223#0" expanded="true" />
+                <element signature="e#237#238#0" expanded="true" />
+                <element signature="e#271#272#0" expanded="true" />
+                <element signature="e#286#287#0" expanded="true" />
+                <element signature="e#320#321#0" expanded="true" />
+                <element signature="e#349#350#0" expanded="true" />
+                <element signature="e#383#384#0" expanded="true" />
+                <element signature="e#407#408#0" expanded="true" />
+                <element signature="e#488#489#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DamageIndicator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/stickManAdventure/DamageIndicator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="321">
+              <caret line="43" column="25" lean-forward="false" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>indicator = new DamageIndicator</find>
+      <find>frame.pack</find>
+      <find>Adventure.frameHeight</find>
+      <find>xC</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -142,12 +203,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/stickManAdventure/StickMan.java" />
-        <option value="$PROJECT_DIR$/src/stickManAdventure/Zone.java" />
         <option value="$PROJECT_DIR$/src/stickManAdventure/StickManAdventure.java" />
         <option value="$PROJECT_DIR$/src/stickManAdventure/SMA.java" />
+        <option value="$PROJECT_DIR$/src/stickManAdventure/DamageIndicator.java" />
+        <option value="$PROJECT_DIR$/src/stickManAdventure/Zone.java" />
+        <option value="$PROJECT_DIR$/src/stickManAdventure/StickMan.java" />
+        <option value="$PROJECT_DIR$/src/stickManAdventure/Adventure.java" />
         <option value="$PROJECT_DIR$/src/stickManAdventure/Level.java" />
         <option value="$PROJECT_DIR$/src/stickManAdventure/Entity.java" />
+        <option value="$PROJECT_DIR$/src/stickManAdventure/Hitbox.java" />
       </list>
     </option>
   </component>
@@ -188,8 +252,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -226,8 +290,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Language Defaults" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/GitHub/PortableGit_f02737a78695063deace08e96d5042710d3e32db/cmd/git.exe" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunManager" selected="Application.Adventure">
     <configuration default="false" name="Adventure" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -498,7 +562,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1575985" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -510,7 +574,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39962476" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -524,14 +588,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/stickManAdventure/Zone.java</url>
-          <line>68</line>
-          <properties />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="2" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -545,7 +602,229 @@
         <state relative-caret-position="375">
           <caret line="32" column="28" lean-forward="false" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
           <folding>
+            <element signature="method#StickMan#0;class#StickMan#0" expanded="false" />
+            <element signature="method#loadImgRes#0;class#StickMan#0" expanded="false" />
+            <element signature="method#respawn#0;class#StickMan#0" expanded="false" />
+            <element signature="method#draw#0;class#StickMan#0" expanded="false" />
+            <element signature="method#visActID#0;class#StickMan#0" expanded="false" />
+            <element signature="method#paint#0;class#StickMan#0" expanded="false" />
+            <element signature="method#debugLines#0;class#StickMan#0" expanded="false" />
+            <element signature="method#floor#0;class#StickMan#0" expanded="false" />
+            <element signature="method#ceiling#0;class#StickMan#0" expanded="false" />
+            <element signature="method#leftWall#0;class#StickMan#0" expanded="false" />
+            <element signature="method#rightWall#0;class#StickMan#0" expanded="false" />
+            <element signature="method#vkIndex#0;class#StickMan#0" expanded="false" />
+            <element signature="method#update#0;class#StickMan#0" expanded="false" />
+            <element signature="method#setStats#0;class#StickMan#0" expanded="false" />
+            <element signature="method#setStats#1;class#StickMan#0" expanded="false" />
+            <element signature="method#jump#0;class#StickMan#0" expanded="false" />
+            <element signature="method#walk#0;class#StickMan#0" expanded="false" />
+            <element signature="method#setVelocity#0;class#StickMan#0" expanded="false" />
+            <element signature="method#frameClock#0;class#StickMan#0" expanded="false" />
+            <element signature="method#keyPressed#0;class#StickMan#0" expanded="false" />
+            <element signature="method#keyReleased#0;class#StickMan#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Adventure.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1425">
+          <caret line="105" column="32" lean-forward="true" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="32" />
+          <folding>
+            <element signature="method#getLevel#0;class#Adventure#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Zone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="19" column="16" lean-forward="true" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+          <folding>
+            <element signature="method#Zone#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapHorizontalCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#getHorizontalCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#getVerticalCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapTopCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapBottomCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapLeftCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapRightCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#getCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapUpwardMotionCancel#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapDownwardMotionCancel#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapVerticalMotionCancel#0;class#Zone#0" expanded="false" />
+            <element signature="method#detVIntersect#0;class#Zone#0" expanded="false" />
+            <element signature="method#detHIntersect#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapDamage#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapFunction#2;class#Zone#0" expanded="false" />
+            <element signature="method#update#0;class#Zone#0" expanded="false" />
+            <element signature="method#paint#0;class#Zone#0" expanded="false" />
+            <element signature="method#drawDoor#0;class#Zone#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="31" column="35" lean-forward="false" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
+          <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Entity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#takeCollision#0;class#Entity#0" expanded="false" />
+            <element signature="method#Entity#0;class#Entity#0" expanded="false" />
+            <element signature="method#update#0;class#Entity#0" expanded="false" />
+            <element signature="method#seek#0;class#Entity#0" expanded="false" />
+            <element signature="method#jump#0;class#Entity#0" expanded="false" />
+            <element signature="method#move#0;class#Entity#0" expanded="false" />
+            <element signature="method#touchH#0;class#Entity#0" expanded="false" />
+            <element signature="method#touchV#0;class#Entity#0" expanded="false" />
+            <element signature="method#paintBox#0;class#Entity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stickManAdventure/DamageIndicator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="46" column="19" lean-forward="true" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stickManAdventure/StickMan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="32" column="28" lean-forward="false" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
+          <folding>
+            <element signature="method#StickMan#0;class#StickMan#0" expanded="false" />
+            <element signature="method#loadImgRes#0;class#StickMan#0" expanded="false" />
+            <element signature="method#respawn#0;class#StickMan#0" expanded="false" />
+            <element signature="method#draw#0;class#StickMan#0" expanded="false" />
+            <element signature="method#visActID#0;class#StickMan#0" expanded="false" />
+            <element signature="method#paint#0;class#StickMan#0" expanded="false" />
+            <element signature="method#debugLines#0;class#StickMan#0" expanded="false" />
+            <element signature="method#floor#0;class#StickMan#0" expanded="false" />
+            <element signature="method#ceiling#0;class#StickMan#0" expanded="false" />
+            <element signature="method#leftWall#0;class#StickMan#0" expanded="false" />
+            <element signature="method#rightWall#0;class#StickMan#0" expanded="false" />
+            <element signature="method#vkIndex#0;class#StickMan#0" expanded="false" />
+            <element signature="method#update#0;class#StickMan#0" expanded="false" />
+            <element signature="method#setStats#0;class#StickMan#0" expanded="false" />
+            <element signature="method#setStats#1;class#StickMan#0" expanded="false" />
+            <element signature="method#jump#0;class#StickMan#0" expanded="false" />
+            <element signature="method#walk#0;class#StickMan#0" expanded="false" />
+            <element signature="method#setVelocity#0;class#StickMan#0" expanded="false" />
+            <element signature="method#frameClock#0;class#StickMan#0" expanded="false" />
+            <element signature="method#keyPressed#0;class#StickMan#0" expanded="false" />
+            <element signature="method#keyReleased#0;class#StickMan#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Adventure.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3225">
+          <caret line="215" column="37" lean-forward="false" selection-start-line="215" selection-start-column="37" selection-end-line="215" selection-end-column="37" />
+          <folding>
+            <element signature="method#getLevel#0;class#Adventure#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Zone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="142" column="11" lean-forward="false" selection-start-line="142" selection-start-column="11" selection-end-line="142" selection-end-column="11" />
+          <folding>
+            <element signature="method#Zone#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapHorizontalCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#getHorizontalCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#getVerticalCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapTopCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapBottomCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapLeftCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapRightCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#getCollision#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapUpwardMotionCancel#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapDownwardMotionCancel#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapVerticalMotionCancel#0;class#Zone#0" expanded="false" />
+            <element signature="method#detVIntersect#0;class#Zone#0" expanded="false" />
+            <element signature="method#detHIntersect#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapDamage#0;class#Zone#0" expanded="false" />
+            <element signature="method#mapFunction#2;class#Zone#0" expanded="false" />
+            <element signature="method#update#0;class#Zone#0" expanded="false" />
+            <element signature="method#paint#0;class#Zone#0" expanded="false" />
+            <element signature="method#drawDoor#0;class#Zone#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="31" column="35" lean-forward="true" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Entity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="method#takeCollision#0;class#Entity#0" expanded="false" />
+            <element signature="method#Entity#0;class#Entity#0" expanded="false" />
+            <element signature="method#update#0;class#Entity#0" expanded="false" />
+            <element signature="method#seek#0;class#Entity#0" expanded="false" />
+            <element signature="method#jump#0;class#Entity#0" expanded="false" />
+            <element signature="method#move#0;class#Entity#0" expanded="false" />
+            <element signature="method#touchH#0;class#Entity#0" expanded="false" />
+            <element signature="method#touchV#0;class#Entity#0" expanded="false" />
+            <element signature="method#paintBox#0;class#Entity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stickManAdventure/StickMan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="32" column="28" lean-forward="false" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
+          <folding>
+            <element signature="method#StickMan#0;class#StickMan#0" expanded="false" />
+            <element signature="method#loadImgRes#0;class#StickMan#0" expanded="false" />
+            <element signature="method#respawn#0;class#StickMan#0" expanded="false" />
+            <element signature="method#draw#0;class#StickMan#0" expanded="false" />
+            <element signature="method#visActID#0;class#StickMan#0" expanded="false" />
+            <element signature="method#paint#0;class#StickMan#0" expanded="false" />
+            <element signature="method#debugLines#0;class#StickMan#0" expanded="false" />
+            <element signature="method#floor#0;class#StickMan#0" expanded="false" />
+            <element signature="method#ceiling#0;class#StickMan#0" expanded="false" />
+            <element signature="method#leftWall#0;class#StickMan#0" expanded="false" />
+            <element signature="method#rightWall#0;class#StickMan#0" expanded="false" />
+            <element signature="method#vkIndex#0;class#StickMan#0" expanded="false" />
+            <element signature="method#update#0;class#StickMan#0" expanded="false" />
+            <element signature="method#setStats#0;class#StickMan#0" expanded="false" />
+            <element signature="method#setStats#1;class#StickMan#0" expanded="false" />
+            <element signature="method#jump#0;class#StickMan#0" expanded="false" />
+            <element signature="method#walk#0;class#StickMan#0" expanded="false" />
+            <element signature="method#setVelocity#0;class#StickMan#0" expanded="false" />
+            <element signature="method#frameClock#0;class#StickMan#0" expanded="false" />
+            <element signature="method#keyPressed#0;class#StickMan#0" expanded="false" />
+            <element signature="method#keyReleased#0;class#StickMan#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -568,7 +847,6 @@
             <element signature="method#Zone#0;class#Zone#0" expanded="false" />
             <element signature="method#mapHorizontalCollision#0;class#Zone#0" expanded="false" />
             <element signature="method#getHorizontalCollision#0;class#Zone#0" expanded="false" />
-            <element signature="method#mapVerticalCollision#0;class#Zone#0" expanded="false" />
             <element signature="method#getVerticalCollision#0;class#Zone#0" expanded="false" />
             <element signature="method#mapTopCollision#0;class#Zone#0" expanded="false" />
             <element signature="method#mapBottomCollision#0;class#Zone#0" expanded="false" />
@@ -584,7 +862,6 @@
             <element signature="method#mapDamage#0;class#Zone#0" expanded="false" />
             <element signature="method#mapFunction#2;class#Zone#0" expanded="false" />
             <element signature="method#update#0;class#Zone#0" expanded="false" />
-            <element signature="method#fillZone#0;class#Zone#0" expanded="false" />
             <element signature="method#paint#0;class#Zone#0" expanded="false" />
             <element signature="method#drawDoor#0;class#Zone#0" expanded="false" />
           </folding>
@@ -596,7 +873,27 @@
         <state relative-caret-position="375">
           <caret line="32" column="28" lean-forward="false" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#StickMan#0;class#StickMan#0" expanded="false" />
+            <element signature="method#loadImgRes#0;class#StickMan#0" expanded="false" />
+            <element signature="method#respawn#0;class#StickMan#0" expanded="false" />
+            <element signature="method#draw#0;class#StickMan#0" expanded="false" />
+            <element signature="method#visActID#0;class#StickMan#0" expanded="false" />
+            <element signature="method#paint#0;class#StickMan#0" expanded="false" />
+            <element signature="method#debugLines#0;class#StickMan#0" expanded="false" />
+            <element signature="method#floor#0;class#StickMan#0" expanded="false" />
+            <element signature="method#ceiling#0;class#StickMan#0" expanded="false" />
+            <element signature="method#leftWall#0;class#StickMan#0" expanded="false" />
+            <element signature="method#rightWall#0;class#StickMan#0" expanded="false" />
+            <element signature="method#vkIndex#0;class#StickMan#0" expanded="false" />
+            <element signature="method#update#0;class#StickMan#0" expanded="false" />
+            <element signature="method#setStats#0;class#StickMan#0" expanded="false" />
+            <element signature="method#setStats#1;class#StickMan#0" expanded="false" />
+            <element signature="method#jump#0;class#StickMan#0" expanded="false" />
+            <element signature="method#walk#0;class#StickMan#0" expanded="false" />
+            <element signature="method#setVelocity#0;class#StickMan#0" expanded="false" />
+            <element signature="method#frameClock#0;class#StickMan#0" expanded="false" />
+            <element signature="method#keyPressed#0;class#StickMan#0" expanded="false" />
+            <element signature="method#keyReleased#0;class#StickMan#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -619,7 +916,6 @@
             <element signature="method#Zone#0;class#Zone#0" expanded="false" />
             <element signature="method#mapHorizontalCollision#0;class#Zone#0" expanded="false" />
             <element signature="method#getHorizontalCollision#0;class#Zone#0" expanded="false" />
-            <element signature="method#mapVerticalCollision#0;class#Zone#0" expanded="false" />
             <element signature="method#getVerticalCollision#0;class#Zone#0" expanded="false" />
             <element signature="method#mapTopCollision#0;class#Zone#0" expanded="false" />
             <element signature="method#mapBottomCollision#0;class#Zone#0" expanded="false" />
@@ -635,32 +931,20 @@
             <element signature="method#mapDamage#0;class#Zone#0" expanded="false" />
             <element signature="method#mapFunction#2;class#Zone#0" expanded="false" />
             <element signature="method#update#0;class#Zone#0" expanded="false" />
-            <element signature="method#fillZone#0;class#Zone#0" expanded="false" />
             <element signature="method#paint#0;class#Zone#0" expanded="false" />
             <element signature="method#drawDoor#0;class#Zone#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stickManAdventure/StickMan.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="32" column="28" lean-forward="false" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Zone.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="142" column="11" lean-forward="false" selection-start-line="142" selection-start-column="11" selection-end-line="142" selection-end-column="11" />
+        <state relative-caret-position="405">
+          <caret line="73" column="36" lean-forward="true" selection-start-line="73" selection-start-column="36" selection-end-line="73" selection-end-column="36" />
           <folding>
             <element signature="method#Zone#0;class#Zone#0" expanded="false" />
             <element signature="method#mapHorizontalCollision#0;class#Zone#0" expanded="false" />
             <element signature="method#getHorizontalCollision#0;class#Zone#0" expanded="false" />
-            <element signature="method#mapVerticalCollision#0;class#Zone#0" expanded="false" />
             <element signature="method#getVerticalCollision#0;class#Zone#0" expanded="false" />
             <element signature="method#mapTopCollision#0;class#Zone#0" expanded="false" />
             <element signature="method#mapBottomCollision#0;class#Zone#0" expanded="false" />
@@ -676,52 +960,105 @@
             <element signature="method#mapDamage#0;class#Zone#0" expanded="false" />
             <element signature="method#mapFunction#2;class#Zone#0" expanded="false" />
             <element signature="method#update#0;class#Zone#0" expanded="false" />
-            <element signature="method#fillZone#0;class#Zone#0" expanded="false" />
             <element signature="method#paint#0;class#Zone#0" expanded="false" />
             <element signature="method#drawDoor#0;class#Zone#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Level.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="31" column="35" lean-forward="true" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#973#974#0" expanded="true" />
-            <element signature="e#993#994#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Adventure.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="215" column="37" lean-forward="false" selection-start-line="215" selection-start-column="37" selection-end-line="215" selection-end-column="37" />
+        <state relative-caret-position="547">
+          <caret line="202" column="79" lean-forward="false" selection-start-line="202" selection-start-column="79" selection-end-line="202" selection-end-column="79" />
           <folding>
             <element signature="method#getLevel#0;class#Adventure#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/stickManAdventure/DamageIndicator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="43" column="25" lean-forward="false" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="579">
+          <caret line="53" column="51" lean-forward="false" selection-start-line="53" selection-start-column="51" selection-end-line="53" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stickManAdventure/StickMan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="254" column="39" lean-forward="false" selection-start-line="254" selection-start-column="39" selection-end-line="254" selection-end-column="39" />
+          <folding>
+            <element signature="method#StickMan#0;class#StickMan#0" expanded="false" />
+            <element signature="method#loadImgRes#0;class#StickMan#0" expanded="false" />
+            <element signature="method#respawn#0;class#StickMan#0" expanded="false" />
+            <element signature="method#draw#0;class#StickMan#0" expanded="false" />
+            <element signature="method#visActID#0;class#StickMan#0" expanded="false" />
+            <element signature="method#paint#0;class#StickMan#0" expanded="false" />
+            <element signature="method#debugLines#0;class#StickMan#0" expanded="false" />
+            <element signature="method#floor#0;class#StickMan#0" expanded="false" />
+            <element signature="method#ceiling#0;class#StickMan#0" expanded="false" />
+            <element signature="method#leftWall#0;class#StickMan#0" expanded="false" />
+            <element signature="method#rightWall#0;class#StickMan#0" expanded="false" />
+            <element signature="method#vkIndex#0;class#StickMan#0" expanded="false" />
+            <element signature="method#update#0;class#StickMan#0" expanded="false" />
+            <element signature="method#setStats#0;class#StickMan#0" expanded="false" />
+            <element signature="method#setStats#1;class#StickMan#0" expanded="false" />
+            <element signature="method#jump#0;class#StickMan#0" expanded="false" />
+            <element signature="method#walk#0;class#StickMan#0" expanded="false" />
+            <element signature="method#setVelocity#0;class#StickMan#0" expanded="false" />
+            <element signature="method#frameClock#0;class#StickMan#0" expanded="false" />
+            <element signature="method#keyPressed#0;class#StickMan#0" expanded="false" />
+            <element signature="method#keyReleased#0;class#StickMan#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Entity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="65" column="23" lean-forward="true" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+        <state relative-caret-position="631">
+          <caret line="113" column="67" lean-forward="true" selection-start-line="113" selection-start-column="67" selection-end-line="113" selection-end-column="67" />
           <folding>
             <element signature="method#takeCollision#0;class#Entity#0" expanded="false" />
-            <element signature="method#indicate#0;class#Entity#0" expanded="false" />
+            <element signature="method#Entity#0;class#Entity#0" expanded="false" />
             <element signature="method#update#0;class#Entity#0" expanded="false" />
-            <element signature="method#eupdate#0;class#Entity#0" expanded="false" />
             <element signature="method#seek#0;class#Entity#0" expanded="false" />
             <element signature="method#jump#0;class#Entity#0" expanded="false" />
             <element signature="method#move#0;class#Entity#0" expanded="false" />
             <element signature="method#touchH#0;class#Entity#0" expanded="false" />
             <element signature="method#touchV#0;class#Entity#0" expanded="false" />
-            <element signature="method#bite#0;class#Entity#0" expanded="false" />
-            <element signature="method#paint#0;class#Entity#0" expanded="false" />
             <element signature="method#paintBox#0;class#Entity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stickManAdventure/Hitbox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+          <folding>
+            <element signature="e#151#152#0" expanded="true" />
+            <element signature="e#179#180#0" expanded="true" />
+            <element signature="e#194#195#0" expanded="true" />
+            <element signature="e#222#223#0" expanded="true" />
+            <element signature="e#237#238#0" expanded="true" />
+            <element signature="e#271#272#0" expanded="true" />
+            <element signature="e#286#287#0" expanded="true" />
+            <element signature="e#320#321#0" expanded="true" />
+            <element signature="e#349#350#0" expanded="true" />
+            <element signature="e#383#384#0" expanded="true" />
+            <element signature="e#407#408#0" expanded="true" />
+            <element signature="e#488#489#0" expanded="true" />
           </folding>
         </state>
       </provider>

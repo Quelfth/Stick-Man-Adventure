@@ -12,8 +12,6 @@ import java.util.TreeSet;
 public class StickMan extends Entity implements KeyListener {
 	int spawnX = 0;
 	int spawnY = 0;
-	int xC = 36;
-	int yC = -96;
 	int velX = 0;
 	int velY = 0;
 	boolean dir = true;
@@ -258,13 +256,13 @@ public class StickMan extends Entity implements KeyListener {
 		int xo = Adventure.xo;
 		int yo = Adventure.yo;
 		g.setColor(new Color(255, 0, 0));
-		g.drawLine(0, roof + yo, frameWidth, roof + yo);
+		g.drawLine(0, roof + yo, frame.getWidth(), roof + yo);
 		g.setColor(new Color(0, 0, 255));
-		g.drawLine(0, ground - 1 + yo, frameWidth, ground - 1 + yo);
+		g.drawLine(0, ground - 1 + yo, frame.getWidth(), ground - 1 + yo);
 		g.setColor(new Color(0, 255, 0));
-		g.drawLine(leftSide + xo, 0, leftSide + xo, frameHeight);
+		g.drawLine(leftSide + xo, 0, leftSide + xo, frame.getHeight());
 		g.setColor(new Color(255, 255, 0));
-		g.drawLine(rightSide - 1 + xo, 0, rightSide - 1 + xo, frameHeight);
+		g.drawLine(rightSide - 1 + xo, 0, rightSide - 1 + xo, frame.getHeight());
 		g.setColor(new Color(0, 127, 255));
 		g.drawRect(x + xo, y2 + yo, 72, 192);
 	}

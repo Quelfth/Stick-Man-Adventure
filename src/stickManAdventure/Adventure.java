@@ -29,10 +29,8 @@ public class Adventure {
 
 	public static void main(String[] args) {
 		final JFrame frame = new JFrame("Stick Man Adventure");
-		String FrameHeight = "";// JOptionPane.showInputDialog("Height of
-								// Window:");
-		String FrameWidth = "";// JOptionPane.showInputDialog("Width of
-								// Window:");
+		String FrameHeight = "";// JOptionPane.showInputDialog("Height of Window:");
+		String FrameWidth = ""; // JOptionPane.showInputDialog("Width of Window:");
 		if (FrameWidth.equals("")) {
 			FrameWidth = "1500";
 		}
@@ -92,7 +90,7 @@ public class Adventure {
 		cliff0.add(new Zone(900, 1050, 980, 400, 1, 0));
 		cliff0.add(new Zone(898, 1050, 900, 398, 1, 0));
 		cliff0.add(new Zone(980, 500, 1500, 460, 1, 0));
-		cliff0.add(new Zone(1300, 450, 1500, 50, 3, 0));
+		cliff0.add(new Zone(1300, 460, 1500, 60, 3, 0));
 		cliff0.add(doorS0);
 		Level enemy0 = new Level(s, 1500, 1050);
 		enemy0.add(new Entity(200, 200, 300, 300));
@@ -132,7 +130,6 @@ public class Adventure {
 		frame.setVisible(true);
 		frame.add(panel);
 		panel.setPreferredSize(new Dimension(frameWidth, frameHeight));
-		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		boolean lastSpaceCheck = false;
 
@@ -141,7 +138,8 @@ public class Adventure {
 		while (true) {
 			xo = (frameWidth / 2)-s.x;
 			yo = (frameHeight / 2)-s.y;
-			frame.pack();
+			frameWidth = frame.getWidth();
+			frameHeight = frame.getHeight();
 			s.frame = frame;
 			if (s.vkgrave) {
 				if (s.codePressed != KeyEvent.VK_BACK_QUOTE == false) {
@@ -202,18 +200,15 @@ public class Adventure {
 			s.setFloat(s.vkshift && !s.vkspace);
 			getLevel().update();
 			lastWCheck = s.vkw;
-
+            System.out.println(yo + " " + getLevel().height + " " + frameHeight);
 			panel.repaint();
-			try{
-			System.out.println(frameHeight - levels[5+127].e.get(0).y2 + " " + levels[5+127].e.get(0).velY);
-			}catch(Exception e){
-			}
+
+			//This is the end; do nothing after this.
 			try {
 				Thread.sleep(1000 / 60);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			System.out.println(stop);
 		}
 	}
 	

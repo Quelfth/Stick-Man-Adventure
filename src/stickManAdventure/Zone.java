@@ -201,7 +201,7 @@ public class Zone {
             s.invisibilityFrames = 20;
             s.extraVel += velocityH;
             s.velY += velocityV;
-            indicator = new DamageIndicator(s.xC, s.yC, damage, Color.RED);
+            indicator.add(s.xC, s.yC, damage, Color.RED);
         }
     }
 

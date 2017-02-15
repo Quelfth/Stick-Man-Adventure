@@ -50,10 +50,10 @@ public class Level {
 		int fw = Adventure.frameWidth;
 		int fh = Adventure.frameHeight;
 		g.setColor(new Color(191, 191, 191));
-		g.fillRect(0, 0, xo, fh);
-		g.fillRect(xo, 0, width, yo - height + fh);
-		g.fillRect(xo + width, 0, fw - xo - width, fh);
-		g.fillRect(xo, yo + fh, width, -yo);
+		g.fillRect(0, 0, xo, fh);									//left wall
+		g.fillRect(xo, 0, width, yo - height + 1050);			//ceiling
+		g.fillRect(xo + width, 0, fw - xo - width, fh);	//right wall
+		g.fillRect(xo, yo + 1050, width, fh);							//floor
 		for(Zone i : d)
 		    i.paint(g);
 		for(Entity i : e)
@@ -67,7 +67,7 @@ public class Level {
 		for (Zone i : z)
 		    i.update();
 		for (Entity i : e)
-		    i.eupdate();
+		    i.eUpdate();
 		for (Zone i : d)
 			i.update();
 		s.update();

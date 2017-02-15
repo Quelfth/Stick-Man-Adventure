@@ -23,7 +23,8 @@ public class Entity {
 	TreeSet<Integer> wallsRight = new TreeSet<>();
 	TreeSet<Integer> ceilings = new TreeSet<>();
 	TreeSet<Integer> floors = new TreeSet<>();
-	ArrayList<DamageIndicator> indicators = new ArrayList<DamageIndicator>();
+	ArrayList<DamageIndicator> indicators = new ArrayList<>();
+	DamageIndicator indicator;
 	int leftWall = 0;
 	int rightWall = 0;
 	int floor = 0;
@@ -54,7 +55,7 @@ public class Entity {
     }
 
 	void indicate(int x, int y, int dam) {
-		indicators.add(new DamageIndicator(x, y, dam, dam < 0 ? new Color(255, 0, 0) : new Color(0, 255, 0)));
+		indicator.add(x, y, dam, dam > 0 ? new Color(255, 0, 0) : new Color(0, 255, 0));
 	}
 
 	public Entity(int x, int y, int x2, int y2) {
@@ -64,6 +65,8 @@ public class Entity {
 		h = y2 - y;
 		hp = 20;
 		jumpForce = 10;
+		indicator = new DamageIndicator(0, 0, 0, new Color(0, 0, 0));
+		indicator.time = 21;
 	}
 
 	public void update() {
@@ -77,7 +80,7 @@ public class Entity {
 		}
 	}
 
-	public void eupdate() {
+	public void eUpdate() {
 		update();
 		x2 = x + w;
 		y2 = y + h;
@@ -86,15 +89,15 @@ public class Entity {
 
 		wallsLeft.add(x);
 		wallsRight.add(Adventure.getLevel().width - x2);
-		ceilings.add(y + Adventure.frameHeight - Adventure.getLevel().height);
-		floors.add(Adventure.frameHeight - y2);
+		ceilings.add(y + 1050 - Adventure.getLevel().height);
+		floors.add(1050 - y2);
 		leftWall = wallsLeft.first();
 		rightWall = wallsRight.first();
 		floor = floors.first();
 		ceiling = ceilings.first();
 		velY--;
-		if(y < Adventure.frameHeight - Adventure.getLevel().height)
-		    y = Adventure.frameHeight - Adventure.getLevel().height;
+		if(y < 1050 - Adventure.getLevel().height)
+		    y = 1050 - Adventure.getLevel().height;
 		if (ceilings.first() >= velY && floors.first() >= -velY) {
 			y -= velY;
 		} else {
@@ -104,8 +107,8 @@ public class Entity {
 				y -= floors.first();
 			velY = 0;
 		}
-		if (y2 > Adventure.frameHeight) {
-			y = Adventure.frameHeight - h;
+		if (y2 > 1050) {
+			y = 1050 - h;
 			velY = 0;
 		}
 		if (-velX < wallsLeft.first() && velX < wallsRight.first())
@@ -118,9 +121,8 @@ public class Entity {
 		}
 		seek(Adventure.s);
 		bite(Adventure.s);
-		for (DamageIndicator i : indicators) {
-			i.update();
-		}
+
+		indicator.update();
 		wallsLeft.clear();
 		wallsRight.clear();
 		ceilings.clear();
@@ -229,15 +231,14 @@ public class Entity {
 	public void bite(Entity subject) {
 		if (touch(subject)) {
 			subject.hp--;
-			indicate(subject.xC, subject.yC, 1);
+			indicator.add(subject.xC, subject.y2, 1, new Color(255, 0, 0));
 		}
 
 	}
 
 	public void paint(Graphics g) {
 		paintBox(g);
-		for (DamageIndicator i : indicators)
-			i.paint(g);
+		indicator.paint(g);
 	}
 
 	public void paintBox(Graphics g) {
