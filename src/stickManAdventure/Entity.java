@@ -6,14 +6,7 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 
 public class Entity {
-	int x = 0;
-	int y = 0;
-	int xC = 0;
-	int yC = 0;
-	int x2 = 0;
-	int y2 = 0;
-	int w = 0;
-	int h = 0;
+	Hitbox k = new Hitbox();
 	int hp = 0;
 	int maxHp = 20;
 	int velX = 0;
@@ -59,10 +52,10 @@ public class Entity {
 	}
 
 	public Entity(int x, int y, int x2, int y2) {
-		this.x = x;
-		this.y = y;
-		w = x2 - x;
-		h = y2 - y;
+		k.setX(x);
+		k.setY(y);
+		k.setWidth(x2-x);
+		k.setHeight(y2-y);
 		hp = 20;
 		jumpForce = 10;
 		indicator = new DamageIndicator(0, 0, 0, new Color(0, 0, 0));
@@ -82,42 +75,37 @@ public class Entity {
 
 	public void eUpdate() {
 		update();
-		x2 = x + w;
-		y2 = y + h;
-		xC = x + w / 2;
-		yC = y + h / 2;
-
-		wallsLeft.add(x);
-		wallsRight.add(Adventure.getLevel().width - x2);
-		ceilings.add(y + 1050 - Adventure.getLevel().height);
-		floors.add(1050 - y2);
+		wallsLeft.add(k.x);
+		wallsRight.add(Adventure.getLevel().width - k.x2());
+		ceilings.add(k.y + 1050 - Adventure.getLevel().height);
+		floors.add(1050 - k.y2());
 		leftWall = wallsLeft.first();
 		rightWall = wallsRight.first();
 		floor = floors.first();
 		ceiling = ceilings.first();
 		velY--;
-		if(y < 1050 - Adventure.getLevel().height)
-		    y = 1050 - Adventure.getLevel().height;
+		if(k.y < 1050 - Adventure.getLevel().height)
+		    k.y = 1050 - Adventure.getLevel().height;
 		if (ceilings.first() >= velY && floors.first() >= -velY) {
-			y -= velY;
+			k.y -= velY;
 		} else {
 			if (velY > 0)
-				y += ceilings.first();
+				k.y += ceilings.first();
 			if (velY > 0)
-				y -= floors.first();
+				k.y -= floors.first();
 			velY = 0;
 		}
-		if (y2 > 1050) {
-			y = 1050 - h;
+		if (k.y2() > 1050) {
+			k.y = 1050 - k.h;
 			velY = 0;
 		}
 		if (-velX < wallsLeft.first() && velX < wallsRight.first())
-			x += velX;
+			k.x += velX;
 		else {
 			if (velX > 0)
-				x += wallsRight.first();
+				k.x += wallsRight.first();
 			if (velX < 0)
-				x -= wallsLeft.first();
+				k.x -= wallsLeft.first();
 		}
 		seek(Adventure.s);
 		bite(Adventure.s);
@@ -131,9 +119,9 @@ public class Entity {
 
 	public void seek(Entity subject) {
 		if (!touchH(subject)) {
-			if (subject.x < x)
+			if (subject.k.x < k.x)
 				move(false);
-			else if (subject.x > x)
+			else if (subject.k.x > k.x)
 				move(true);
 		} else {
 			if (velX > 0)
@@ -146,35 +134,35 @@ public class Entity {
 	}
 
 	public boolean onFloor() {
-		return y == ground();
+		return k.y == ground();
 	}
 
 	public int ground() {
-		return y + floor;
+		return k.y + floor;
 	}
 
 	public int roof() {
-		return y2 - ceiling;
+		return k.y2() - ceiling;
 	}
 
 	public int leftSide() {
-		return x - leftWall;
+		return k.x - leftWall;
 	}
 
 	public int rightSide() {
-		return x2 + rightWall;
+		return k.x2() + rightWall;
 	}
 
 	public boolean onLeft() {
-		return x == leftSide();
+		return k.x == leftSide();
 	}
 
 	public boolean onCeiling() {
-		return y2 == roof();
+		return k.y2() == roof();
 	}
 
 	public boolean onRight() {
-		return x2 == rightSide();
+		return k.x2() == rightSide();
 	}
 
 	public boolean onWall() {
@@ -207,8 +195,8 @@ public class Entity {
 	}
 
 	public boolean touchH(Entity subject) {
-		for (int i = subject.x; i < subject.x2; i++) {
-			if (i > x && i < x2) {
+		for (int i = subject.k.x; i < subject.k.x2(); i++) {
+			if (i > k.x && i < k.x2()) {
 				return true;
 			}
 		}
@@ -216,8 +204,8 @@ public class Entity {
 	}
 
 	public boolean touchV(Entity subject) {
-		for (int i = subject.y; i > subject.y2; i--) {
-			if (i > y && i < y2) {
+		for (int i = subject.k.y; i > subject.k.y2(); i--) {
+			if (i > k.y && i < k.y2()) {
 				return true;
 			}
 		}
@@ -231,7 +219,7 @@ public class Entity {
 	public void bite(Entity subject) {
 		if (touch(subject)) {
 			subject.hp--;
-			indicator.add(subject.xC, subject.y2, 1, new Color(255, 0, 0));
+			indicator.add(subject.k.xC(), subject.k.y2(), 1, new Color(255, 0, 0));
 		}
 
 	}
@@ -243,6 +231,6 @@ public class Entity {
 
 	public void paintBox(Graphics g) {
 		g.setColor(new Color(0, 0, 0));
-		g.fillRect(x + Adventure.xo, y + Adventure.yo, w, h);
+		g.fillRect(k.x + Adventure.xo, k.y + Adventure.yo, k.w, k.h);
 	}
 }

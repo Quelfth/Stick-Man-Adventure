@@ -136,8 +136,8 @@ public class Adventure {
 		s.setStats(20, 30, 0);
 		Zone.setP1(s);
 		while (true) {
-			xo = (frameWidth / 2)-s.x;
-			yo = (frameHeight / 2)-s.y;
+			xo = (frameWidth / 2)-s.k.x;
+			yo = (frameHeight / 2)-s.k.y;
 			frameWidth = frame.getWidth();
 			frameHeight = frame.getHeight();
 			s.frame = frame;

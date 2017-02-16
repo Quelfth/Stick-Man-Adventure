@@ -9,6 +9,24 @@ public class Hitbox {
     int w;
     int h;
 
+
+
+    void setX(int x){
+        this.x = x;
+    }
+
+    void setY(int y){
+        this.y = y;
+    }
+
+    void setWidth(int width){
+        w = width;
+    }
+
+    void setHeight(int height){
+        h = height;
+    }
+
     int x2(){
         return x + w;
     }

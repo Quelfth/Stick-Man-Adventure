@@ -137,12 +137,12 @@ public class StickMan extends Entity implements KeyListener {
 			spawnY = 1049;
 			break;
 		default:
-			spawnX = x;
-			spawnY = y;
+			spawnX = k.x;
+			spawnY = k.y;
 			break;
 		}
-		x = spawnX;
-		y = spawnY;
+		k.x = spawnX;
+		k.y = spawnY;
 		hp = maxHp;
 		setVelocity(0, 0);
 	}
@@ -153,9 +153,9 @@ public class StickMan extends Entity implements KeyListener {
 
 	public void draw(Graphics g, BufferedImage skin) {
 		if (dir) {
-			g.drawImage(skin, x - 88 + Adventure.xo, y - 256 + Adventure.yo, null);
+			g.drawImage(skin, k.x - 88 + Adventure.xo, k.y - 256 + Adventure.yo, null);
 		} else {
-			g.drawImage(skin, x - 96 + Adventure.xo, y - 256 + Adventure.yo, null);
+			g.drawImage(skin, k.x - 96 + Adventure.xo, k.y - 256 + Adventure.yo, null);
 		}
 
 	}
@@ -264,17 +264,17 @@ public class StickMan extends Entity implements KeyListener {
 		g.setColor(new Color(255, 255, 0));
 		g.drawLine(rightSide - 1 + xo, 0, rightSide - 1 + xo, frame.getHeight());
 		g.setColor(new Color(0, 127, 255));
-		g.drawRect(x + xo, y2 + yo, 72, 192);
+		g.drawRect(k.x + xo, k.y2() + yo, 72, 192);
 	}
 
 	// Collision
 	public void floor() {
 		int effVel = velY;
-		int floor = ground - y;
+		int floor = ground - k.y;
 		if (floor < -effVel) {
-			y += floor;
+			k.y += floor;
 		} else {
-			y -= effVel;
+			k.y -= effVel;
 		}
 		if (floor == 0) {
 			velY = 0;
@@ -282,11 +282,11 @@ public class StickMan extends Entity implements KeyListener {
 	}
 
 	public void ceiling() {
-		int ceiling = y2 - roof;
+		int ceiling = k.y2() - roof;
 		if (ceiling < velY) {
-			y -= ceiling;
+			k.y -= ceiling;
 		} else {
-			y -= velY;
+			k.y -= velY;
 		}
 		if (ceiling == 0) {
 			velY = 0;
@@ -294,11 +294,11 @@ public class StickMan extends Entity implements KeyListener {
 	}
 
 	public void leftWall() {
-		int leftWall = x - leftSide;
+		int leftWall = k.x - leftSide;
 		if (leftWall < -velX) {
-			x -= leftWall;
+			k.x -= leftWall;
 		} else {
-			x += velX;
+			k.x += velX;
 		}
 		if (leftWall == 0) {
 			velX = 0;
@@ -306,11 +306,11 @@ public class StickMan extends Entity implements KeyListener {
 	}
 
 	public void rightWall() {
-		int rightWall = rightSide - x2;
+		int rightWall = rightSide - k.x2();
 		if (rightWall < velX) {
-			x += rightWall;
+			k.x += rightWall;
 		} else {
-			x += velX;
+			k.x += velX;
 		}
 		if (rightWall == 0) {
 			velX = 0;
@@ -364,32 +364,30 @@ public class StickMan extends Entity implements KeyListener {
 			else
 				fn3 = true;
 		}
-		zonesLeft.add(x);
-		zonesRight.add(Adventure.getLevel().width - x2);
-		zonesUp.add(y2 - frameHeight + Adventure.getLevel().height);
-		zonesDown.add(frameHeight - y);
-		ground = y + zonesDown.first();
-		roof = y2 - zonesUp.first();
-		leftSide = x - zonesLeft.first();
-		rightSide = x2 + zonesRight.first();
-		onFloor = (y == ground);
-		onLeft = (x == leftSide);
-		onCeiling = (y2 == roof);
-		onRight = (x2 == rightSide);
+		zonesLeft.add(k.x);
+		zonesRight.add(Adventure.getLevel().width - k.x2());
+		zonesUp.add(k.y2() - frameHeight + Adventure.getLevel().height);
+		zonesDown.add(frameHeight - k.y);
+		ground = k.y + zonesDown.first();
+		roof = k.y2() - zonesUp.first();
+		leftSide = k.x - zonesLeft.first();
+		rightSide = k.x2() + zonesRight.first();
+		onFloor = (k.y == ground);
+		onLeft = (k.x == leftSide);
+		onCeiling = (k.y2() == roof);
+		onRight = (k.x2() == rightSide);
 		onWall = (onLeft || onRight);
 		falling = velY < 0;
 		rising = velY > 0;
 		running = velX > 0;
 		retreating = velX < 0;
 		frameOfAnimation++;
-		if (y == ground && velY == 0) {
+		if (k.y == ground && velY == 0) {
 			jumps = 0;
 		}
-		x2 = x + 72;
-		y2 = y - 192;
-		xC = x + 36;
-		yC = y - 96;
-		if (y < ground) {
+		k.setWidth(72);
+		k.setHeight(-192);
+		if (k.y < ground) {
 			velY--;
 		}
 		if (extraVel < 0) {
@@ -401,7 +399,7 @@ public class StickMan extends Entity implements KeyListener {
 		velX = walkVel + extraVel;
 		if (Float && onWall && !onFloor && hp > 0) {
 			setVelocity(0, 0);
-			y++;
+			k.y++;
 		}
 		vkIndex(codePressed, true);
 		vkIndex(codeReleased, false);

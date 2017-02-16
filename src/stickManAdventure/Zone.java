@@ -38,13 +38,15 @@ public class Zone {
 
     //for mapping collision on normal objects
     private void mapHorizontalCollision(StickMan s) {
-        for (int i = s.y2; i < s.y; i++) {
+        for (int i = s.k.y2(); i < s.k.y; i++) {
             if (i < y1 && i > y2) {
-                if (s.x - x2 >= 0) {
-                    s.zonesLeft.add(s.x - x2);
+                if (s.k.x - x2 >= 0) {
+                    s.zonesLeft.add(s.k.x - x2);
                 }
-                if (x1 - s.x2 >= 0) {
-                    s.zonesRight.add(x1 - s.x2);
+                if (x1 - s.k.x2()
+                        >= 0) {
+                    s.zonesRight.add(x1 - s.k.x2()
+                    );
                 }
             }
         }
@@ -52,13 +54,15 @@ public class Zone {
 
     private TreeSet<Integer>[] getHorizontalCollision(Entity s) {
         TreeSet<Integer>[] rets = new TreeSet[2];
-        for (int i = s.y2; i > s.y; i--) {
+        for (int i = s.k.y2(); i > s.k.y; i--) {
             if (i < y1 && i > y2) {
-                if (s.x - x2 >= 0) {
-                    rets[0].add(s.x - x2);
+                if (s.k.x - x2 >= 0) {
+                    rets[0].add(s.k.x - x2);
                 }
-                if (x1 - s.x2 >= 0) {
-                    rets[1].add(x1 - s.x2);
+                if (x1 - s.k.x2()
+                        >= 0) {
+                    rets[1].add(x1 - s.k.x2()
+                    );
                 }
             }
         }
@@ -66,13 +70,14 @@ public class Zone {
     }
 
     private void mapVerticalCollision(StickMan s) {
-        for (int i = s.x; i < s.x2; i++) {
+        for (int i = s.k.x; i < s.k.x2()
+                ; i++) {
             if (i > x1 && i < x2) {
-                if (s.y2 - y1 >= 0) {
-                    s.zonesUp.add(s.y2 - y1);
+                if (s.k.y2() - y1 >= 0) {
+                    s.zonesUp.add(s.k.y2() - y1);
                 }
-                if (y2 - s.y >= 0) {
-                    s.zonesDown.add(y2 - s.y);
+                if (y2 - s.k.y >= 0) {
+                    s.zonesDown.add(y2 - s.k.y);
                 }
             }
         }
@@ -80,13 +85,14 @@ public class Zone {
 
     private TreeSet<Integer>[] getVerticalCollision(Entity s) {
         TreeSet<Integer>[] rets = new TreeSet[2];
-        for (int i = s.x; i < s.x2; i++) {
+        for (int i = s.k.x; i < s.k.x2()
+                ; i++) {
             if (i > x1 && i < x2) {
-                if (s.y2 - y1 >= 0) {
-                    rets[1].add(s.y2 - y1);
+                if (s.k.y2() - y1 >= 0) {
+                    rets[1].add(s.k.y2() - y1);
                 }
-                if (y2 - s.y >= 0) {
-                    rets[0].add(y2 - s.y);
+                if (y2 - s.k.y >= 0) {
+                    rets[0].add(y2 - s.k.y);
                 }
             }
         }
@@ -95,40 +101,44 @@ public class Zone {
 
     //For mapping collision on one way platforms
     private void mapTopCollision(StickMan s) {
-        for (int i = s.x; i < s.x2; i++) {
+        for (int i = s.k.x; i < s.k.x2()
+                ; i++) {
             if (i > x1 && i < x2) {
-                if (y2 - s.y >= 0) {
-                    s.zonesDown.add(y2 - s.y);
+                if (y2 - s.k.y >= 0) {
+                    s.zonesDown.add(y2 - s.k.y);
                 }
             }
         }
     }
 
     private void mapBottomCollision(StickMan s) {
-        for (int i = s.x; i < s.x2; i++) {
+        for (int i = s.k.x; i < s.k.x2()
+                ; i++) {
             if (i > x1 && i < x2) {
-                if (s.y2 - y1 >= 0) {
-                    s.zonesUp.add(s.y2 - y1);
+                if (s.k.y2() - y1 >= 0) {
+                    s.zonesUp.add(s.k.y2() - y1);
                 }
             }
         }
     }
 
     private void mapLeftCollision(StickMan s) {
-        for (int i = s.y2; i < s.y; i++) {
+        for (int i = s.k.y2(); i < s.k.y; i++) {
             if (i < y1 && i > y2) {
-                if (x1 - s.x2 >= 0) {
-                    s.zonesRight.add(x1 - s.x2);
+                if (x1 - s.k.x2()
+                        >= 0) {
+                    s.zonesRight.add(x1 - s.k.x2()
+                    );
                 }
             }
         }
     }
 
     private void mapRightCollision(StickMan s) {
-        for (int i = s.y2; i < s.y; i++) {
+        for (int i = s.k.y2(); i < s.k.y; i++) {
             if (i < y1 && i > y2) {
-                if (s.x - x2 >= 0) {
-                    s.zonesLeft.add(s.x - x2);
+                if (s.k.x - x2 >= 0) {
+                    s.zonesLeft.add(s.k.x - x2);
                 }
             }
         }
@@ -155,13 +165,13 @@ public class Zone {
 
     //For canceling out motion
     private void mapUpwardMotionCancel() {
-        if (s.y2 < y1 && detHIntersect() && s.velY > 0 && !(s.y2 < y2)) {
+        if (s.k.y2() < y1 && detHIntersect() && s.velY > 0 && !(s.k.y2() < y2)) {
             s.velY = 0;
         }
     }
 
     private void mapDownwardMotionCancel() {
-        if (s.y > y2 && detHIntersect() && s.velY < 1 && !(s.y > y1)) {
+        if (s.k.y > y2 && detHIntersect() && s.velY < 1 && !(s.k.y > y1)) {
             s.velY = 1;
         }
     }
@@ -173,7 +183,7 @@ public class Zone {
 
     //For detecting whether this zone is intersecting the player
     public boolean detVIntersect() {
-        for (int i = s.y2; i < s.y; i++) {
+        for (int i = s.k.y2(); i < s.k.y; i++) {
             if (i < y1 && i > y2) {
                 return true;
             }
@@ -182,7 +192,8 @@ public class Zone {
     }
 
     public boolean detHIntersect() {
-        for (int i = s.x; i < s.x2; i++) {
+        for (int i = s.k.x; i < s.k.x2()
+                ; i++) {
             if (i > x1 && i < x2) {
                 return true;
             }
@@ -201,7 +212,7 @@ public class Zone {
             s.invisibilityFrames = 20;
             s.extraVel += velocityH;
             s.velY += velocityV;
-            indicator.add(s.xC, s.yC, damage, Color.RED);
+            indicator.add(s.k.xC(), s.k.yC(), damage, Color.RED);
         }
     }
 
@@ -236,7 +247,7 @@ public class Zone {
                             }
                             break;
                         case 0:
-                            // if you can go through the door && pressing w
+                            // if you can go through the door && pressing wwwww
                             if (s.hp > 0 && ((Adventure.stage > 0
                                     && (detFullIntersect() && s.vkw && Adventure.lastWCheck))
                                     || (Adventure.stage <= 0 && (s.onFloor || (detFullIntersect() && s.onWall))))) {
@@ -259,7 +270,8 @@ public class Zone {
 
     //For detecting whether the player is completely within this zone
     private boolean detFullIntersect() {
-        return s.y <= y1 && s.y2 >= y2 && s.x >= x1 && s.x2 <= x2;
+        return s.k.y <= y1 && s.k.y2() >= y2 && s.k.x >= x1 && s.k.x2()
+                <= x2;
     }
 
     //Update
