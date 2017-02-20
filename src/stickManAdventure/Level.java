@@ -17,11 +17,27 @@ public class Level {
 	int nextEnt = 0;
 	int height = 0;
 	int width = 0;
-
+	int time = 0;
+	boolean timing = false;
+	int winTime = -1;
+	int loseTime = -1;
+	
 	public Level(StickMan s, int w, int h) {
 		this.s = s;
 		width = w;
 		height = h;
+	}
+	
+	void startTimer(){
+		timing = true;
+	}
+	
+	void setWinTime(int time){
+		winTime = time;
+	}
+	
+	void setLoseTime(int time){
+		loseTime = time;
 	}
 
     TreeSet<Integer>[] mergeCollision(Entity e){
@@ -61,9 +77,17 @@ public class Level {
 		s.paint(g);
 		for (Zone i : z)
 			i.paint(g);
+		
+			
+		if(winTime >= 0 && winTime <= time)
+			g.drawString("YOU WIN!!!", Adventure.frameWidth / 2 - 100, Adventure.frameHeight / 2 - 100);
 	}
 
 	public void update() {
+		if(timing)
+			time++;
+		if(loseTime >= 0 && loseTime <= time)
+			s.respawn();
 		for (Zone i : z)
 		    i.update();
 		for (Entity i : e)

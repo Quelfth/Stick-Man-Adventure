@@ -111,6 +111,7 @@ public class StickMan extends Entity implements KeyListener {
 
 	// Respawn
 	public void respawn(int stage) {
+		Adventure.levels[Adventure.stage + 127].time = 0;
 		switch (stage) {
 		case 0:
 			spawnX = 96;
