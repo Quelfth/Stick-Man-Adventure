@@ -230,7 +230,7 @@ public class Entity {
 	}
 
 	public void paintBox(Graphics g) {
-		g.setColor(new Color(0, 0, 0));
+		g.setColor(new Color(255, 127, 0));
 		g.fillRect(k.x + Adventure.xo, k.y + Adventure.yo, k.w, k.h);
 	}
 }

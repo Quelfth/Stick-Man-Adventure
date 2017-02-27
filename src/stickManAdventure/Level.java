@@ -97,4 +97,15 @@ public class Level {
 		s.update();
 	}
 
+	public int getWinTime() {
+		return winTime;
+	}
+
+	public boolean hasBeenWon(){
+		return winTime >= 0 && winTime <= time;
+	}
+	
+	public void setTime(int t){
+		time = t;
+	}
 }

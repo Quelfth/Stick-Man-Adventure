@@ -29,8 +29,10 @@ public class Adventure {
 
 	public static void main(String[] args) {
 		final JFrame frame = new JFrame("Stick Man Adventure");
-		String FrameHeight = "";// JOptionPane.showInputDialog("Height of Window:");
-		String FrameWidth = ""; // JOptionPane.showInputDialog("Width of Window:");
+		String FrameHeight = "";// JOptionPane.showInputDialog("Height of
+								// Window:");
+		String FrameWidth = ""; // JOptionPane.showInputDialog("Width of
+								// Window:");
 		if (FrameWidth.equals("")) {
 			FrameWidth = "1500";
 		}
@@ -53,6 +55,9 @@ public class Adventure {
 		start.add(new Zone(1000, 500, 1100, 100, 2, 1));
 		start.add(new Zone(399, 400, 401, 200, -1, 0));
 		start.add(new Zone(200, 200, 300, -250, 1, 0));
+		Zone doorS2 = new Zone(300, 200, 500, -200, 3, 2);
+		doorS2.setAdData(4);
+		start.add(doorS2);
 		Level lava0 = new Level(s, 1500, 1050);
 		lava0.add(new Zone(1300, 1000, 1500, 600, 3, 0));
 		lava0.add(new Zone(0, 1050, 500, 1000, 1, 0));
@@ -74,23 +79,41 @@ public class Adventure {
 		cliff0.add(new Zone(0, 1050, 300, 300, 1, 0));
 		cliff0.add(new Zone(600, 650, 640, 0, 1, 0));
 		cliff0.add(new Zone(900, 1050, 980, 400, 1, 0));
-		cliff0.add(new Zone(898, 1050, 900, 398, 1, 0));
+		//cliff0.add(new Zone(898, 1050, 900, 398, 1, 0));
 		cliff0.add(new Zone(980, 500, 1500, 460, 1, 0));
 		cliff0.add(new Zone(1300, 460, 1500, 60, 3, 0));
-		cliff0.add(doorS0);
+		cliff0.add(new Zone(980, 1050, 1500, 500, 1, 0));
+		Level cliff1 = new Level(s, 1500, 1060);
+		cliff1.add(new Zone(0, 1050, 300, 290, 1, 0));
+		cliff1.add(new Zone(600, 640, 640, -10, 1, 0));
+		cliff1.add(new Zone(900, 1050, 980, 390, 1, 0));
+		cliff1.add(new Zone(898, 1050, 900, 388, 1, 0));
+		cliff1.add(new Zone(980, 490, 1500, 450, 1, 0));
+		cliff1.add(new Zone(1300, 450, 1500, 50, 3, 0));
+		cliff1.add(new Zone(300, 1050, 898, 1040, -1, 0));
+		cliff1.add(doorS0);
 		Level enemy0 = new Level(s, 1500, 1050);
 		enemy0.add(new Entity(200, 200, 300, 300));
+		enemy0.setWinTime(1200);
 		Level tyq = new Level(s, 1500, 1050);
-		tyq.add(new Zone(1300, 1050, 1500, 650, 3, 2));
+		Zone doorS1 = new Zone(1300, 1000, 1500, 600, 3, 2);
+		doorS1.setAdData(6);
+		tyq.add(doorS1);
+		tyq.add(new Zone(0, 1050, 500, 1000, 1, 0));
+		tyq.add(new Zone(500, 1050, 1000, 1010, -1, 1));
+		tyq.add(new Zone(1000, 1050, 1500, 1000, 1, 0));
+		tyq.add(new Zone(550, 1050, 950, 600, -1, 1));
+		tyq.add(new Zone(0, 1000, 2, 0, -1, 0));
 		Level last = new Level(s, 65536, 65536);
 		last.add(door10);
 		levels[-8 + 127] = tyq;
 		levels[0 + 127] = start;
 		levels[1 + 127] = lava0;
-		levels[2 + 127] = lava1;
-		levels[3 + 127] = lava2;
-		levels[4 + 127] = cliff0;
-		levels[5 + 127] = enemy0;
+		levels[3 + 127] = lava1;
+		levels[5 + 127] = lava2;
+		levels[2 + 127] = cliff0;
+		levels[4 + 127] = cliff1;
+		levels[6 + 127] = enemy0;
 		JPanel panel = new JPanel() {
 			/**
 			 * 
@@ -104,11 +127,11 @@ public class Adventure {
 				g.setColor(Color.white);
 				g.fillRect(0, 0, frameWidth, frameHeight);
 				getLevel().paint(g);
-				g.setColor(Color.RED);
+				g.setColor(Color.BLACK);
 				if (s.hp >= 0)
-					g.drawString(s.hp + "", 1400, 200);
+					g.drawString(s.hp + "", frameWidth - 56, 50);
 				else
-					g.drawString("0", 1400, 200);
+					g.drawString("0", frameWidth - 50, 50);
 				if (s.fn3)
 					s.debugLines(g);
 			}
@@ -122,12 +145,12 @@ public class Adventure {
 		s.setStats(20, 30, 0);
 		Zone.setP1(s);
 		while (true) {
-			if(stage == 5){
-				levels[stage + 127].startTimer();
-				levels[stage + 127].setWinTime(1200);
+			if (getLevel().getWinTime() >= 0) {
+				getLevel().startTimer();
+				
 			}
-			xo = (frameWidth / 2)-s.k.x;
-			yo = (frameHeight / 2)-s.k.y;
+			xo = (frameWidth / 2) - s.k.x;
+			yo = (frameHeight / 2) - s.k.y;
 			frameWidth = frame.getWidth();
 			frameHeight = frame.getHeight();
 			s.frame = frame;
@@ -190,10 +213,10 @@ public class Adventure {
 			s.setFloat(s.vkshift && !s.vkspace);
 			getLevel().update();
 			lastWCheck = s.vkw;
-            System.out.println(yo + " " + getLevel().height + " " + frameHeight);
+			System.out.println(yo + " " + getLevel().height + " " + frameHeight);
 			panel.repaint();
 
-			//This is the end; do nothing after this.
+			// This is the end; do nothing after this.
 			try {
 				Thread.sleep(1000 / 60);
 			} catch (InterruptedException e) {
@@ -201,8 +224,8 @@ public class Adventure {
 			}
 		}
 	}
-	
-	static void stop(String stop){
+
+	static void stop(String stop) {
 		Adventure.stop = stop;
 	}
 }

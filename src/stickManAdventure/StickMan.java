@@ -111,7 +111,11 @@ public class StickMan extends Entity implements KeyListener {
 
 	// Respawn
 	public void respawn(int stage) {
-		Adventure.levels[Adventure.stage + 127].time = 0;
+		if(Adventure.getLevel().hasBeenWon()){
+			hp = 1;
+			return;
+		}
+		Adventure.getLevel().setTime(0);
 		switch (stage) {
 		case 0:
 			spawnX = 96;
@@ -121,19 +125,21 @@ public class StickMan extends Entity implements KeyListener {
 			spawnX = 96;
 			spawnY = 999;
 			break;
-		case 2:
-			spawnX = 96;
-			spawnY = 999;
-			break;
 		case 3:
+		case -8:
 			spawnX = 96;
 			spawnY = 999;
-			break;
-		case 4:
-			spawnX = 10;
-			spawnY = 300;
 			break;
 		case 5:
+			spawnX = 96;
+			spawnY = 999;
+			break;
+		case 2:
+		case 4:
+			spawnX = 10;
+			spawnY = 290;
+			break;
+		case 6:
 			spawnX = 96;
 			spawnY = 1049;
 			break;

@@ -247,7 +247,7 @@ public class Zone {
                             }
                             break;
                         case 0:
-                            // if you can go through the door && pressing wwwww
+                            // if you can go through the door && pressing w
                             if (s.hp > 0 && ((Adventure.stage > 0
                                     && (detFullIntersect() && s.vkw && Adventure.lastWCheck))
                                     || (Adventure.stage <= 0 && (s.onFloor || (detFullIntersect() && s.onWall))))) {
@@ -261,6 +261,7 @@ public class Zone {
                                 func0 = 1;
                             if (func0 == 1 && s.vkw && Adventure.lastWCheck) {
                                 Adventure.stage = adData;
+                                s.respawn();
                             }
                     }
                     break;
